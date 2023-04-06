@@ -11,6 +11,7 @@ import os
 from os import path
 import yaml
 from transformers import BertTokenizer, BertModel, XLMRobertaTokenizer, XLMRobertaModel
+from transformers import BloomTokenizerFast, BloomModel
 import pickle
 from argparse import ArgumentParser
 from utils.parser import parse_unimorph_features
@@ -27,18 +28,21 @@ parser.add_argument("--dry-run", default=False, action="store_true", help="If en
                     compute any embeddings, but go over the dataset and do everything else.")
 parser.add_argument("--bert", default=None)
 parser.add_argument("--xlmr", default=None)
+parser.add_argument("--bloom", default=None)
 parser.add_argument("--use-gpu", action="store_true", default=False)
 parser.add_argument("--skip-existing", action="store_true", default=False)
+parser.add_argument("--tiny-dataset", type=int, default=None)
 args = parser.parse_args()
 
 
-if not (args.bert or args.xlmr):
-    raise Exception("Must do either BERT or XLMR, but not more than one")
+if not (args.bert or args.xlmr or args.bloom):
+    raise Exception("Must do one of BERT, XLMR and BLOOM, but not more than one")
 
 treebank_path = os.path.join(args.treebanks_root, args.treebank)
-limit_number = None
-bert_model = args.bert
-xlmr_model = args.xlmr
+limit_number = args.tiny_dataset
+bert_model = args.bert    #bert-base-multilingual-cased
+xlmr_model = args.xlmr    #xlm-roberta-base or xlm-roberta-large
+bloom_model = 'bigscience/' + args.bloom  #bigscience/bloom-560m
 print("Embeddings root:", config.EMBEDDINGS_ROOT)
 
 skip_existing = args.skip_existing
@@ -50,7 +54,9 @@ if args.use_gpu:
 
 def subword_tokenize(tokenizer, tokens: List[str]) -> List[Tuple[int, str]]:
     """
-    Returns: List of subword tokens, List of indices mapping each subword token to one real token.
+    erika's note: map subtoken to its word by index. 
+
+    Returns: List of subword tokens, List of indices mapping each subword token to one real token(word).
     """
     subtokens = [tokenizer.tokenize(t) for t in tokens]
 
@@ -71,9 +77,12 @@ def unimorph_feature_parser(line: List[str], i: int) -> Dict[str, str]:
 
 def merge_attributes(tokens: List[str], value_to_attr_dict: Dict[str, str]) -> Dict[str, str]:
     """
+    erika's note: 
+
     Returns a dictionary containing Unimorph attributes, and the values taken on after the merge.
     """
     # First, build a list that naively merges everything
+    # merged_attributes: {key(str, the attr of um features): value(list of str, all the values for key)}
     merged_attributes: Dict[str, List[str]] = {}
     for t in tokens:
         for attr, val in t["um_feats"].items():
@@ -83,6 +92,7 @@ def merge_attributes(tokens: List[str], value_to_attr_dict: Dict[str, str]) -> D
             merged_attributes[attr].append(val)
 
     # Second, remove attributes with multiple values (even if they are the same)
+    # erika: why? (I guess it has some one-to-many mapping problem...)
     final_attributes: Dict[str, str] = {}
     for attr, vals in merged_attributes.items():
         if len(vals) == 1:
@@ -98,6 +108,8 @@ skipped: Dict[str, int] = {}
 final_token_list: List[TokenList] = []
 
 for f in os.listdir(treebank_path):
+    # erika's note: deal with three files:
+    #               xx-um-train.conllu xx-um-dev.conllu xx-um-test.conllu 
     if path.isfile(path.join(treebank_path, f)) and "-um-" in f and f.endswith(".conllu"):
         filename = f
         full_path = path.join(treebank_path, filename)
@@ -107,7 +119,8 @@ for f in os.listdir(treebank_path):
         tags_file = "utils/tags.yaml"
         with open(tags_file, 'r') as h:
             _UNIMORPH_ATTRIBUTE_VALUES = yaml.full_load(h)["categories"]
-
+        
+        # _UNIMORPH_VALUES_ATTRIBUTE {possible value in a category: category name}
         _UNIMORPH_VALUES_ATTRIBUTE = {v: k for k, vs in _UNIMORPH_ATTRIBUTE_VALUES.items() for v in vs}
         # Setup UM feature parsing
         _FEATS = ["id", "form", "lemma", "upos", "xpos", "um_feats", "head", "deprel", "deps", "misc"]
@@ -117,19 +130,27 @@ for f in os.listdir(treebank_path):
             # Setup BERT tokenizer here provisionally as we need to know which sentences have 512+ subtokens
             if args.xlmr:
                 tokenizer = XLMRobertaTokenizer.from_pretrained(args.xlmr)
-            else:
+            elif args.bert:
                 tokenizer = BertTokenizer.from_pretrained("bert-base-multilingual-cased")
+            else:
+                tokenizer = BloomTokenizerFast.from_pretrained(bloom_model)
+                #tokenizer = BloomTokenizerFast.from_pretrained("bigscience/bloom-560m")
 
             for sent_id, tokenlist in enumerate(tqdm(
                     parse_incr(h, fields=_FEATS, field_parsers={"um_feats": unimorph_feature_parser}))):
                 # Only process first `limit_number` if it is set
+                # erika's note: I guess it is for debugging usage?
                 if limit_number is not None and sent_id > limit_number:
                     break
 
                 # Remove virtual nodes
                 tokenlist = [t for t in tokenlist if not (isinstance(t["id"], tuple) and t["id"][1] == ".")]
+                # print(tokenlist)
+                # one tokenlist represents one sentence in dataset. 
+                # a list of dict, each dict contains one word and its labels.
 
                 # Build list of ids that are contracted
+                # erika's note: I don't know what is the following code doing.
                 contracted_ids: List[int] = []
                 for t in tokenlist:
                     if isinstance(t["id"], tuple):
@@ -141,7 +162,7 @@ for f in os.listdir(treebank_path):
                 non_contracted_token_dict: Dict[int, Any] = {
                     t["id"]: t for t in tokenlist if not isinstance(t["id"], tuple)}
 
-                # Build final list of (real) tokens, without any contractions
+                # Build final list of (real) tokens(words), without any contractions
                 # Contractions are assigned the attributes of the constituent words, unless there is a clash
                 # with one attribute taking more than one value (e.g. POS tag is a frequent example), whereby
                 # we discard it.
@@ -163,11 +184,17 @@ for f in os.listdir(treebank_path):
                         final_tokens.append(t)
 
                 final_tokens: TokenList = TokenList(final_tokens)
+                # print(final_tokens)
 
-                # Skip if this would have more than 512 subtokens
+                # Skip if this sentence would have a total subtoken amount that is larger than the context length
+                model_context_length = None
+                if args.bert or args.xlmr:
+                    model_context_length = 512
+                else: # for BLOOM
+                    model_context_length = 1024
                 labelled_subwords = subword_tokenize(tokenizer, [t["form"] for t in final_tokens])
                 subtoken_indices, subtokens = zip(*labelled_subwords)
-                if len(subtokens) >= 512:
+                if len(subtokens) >= model_context_length:
                     if "subtoken_count" not in skipped:
                         skipped["subtoken_count"] = 0
 
@@ -180,6 +207,7 @@ for f in os.listdir(treebank_path):
                 skipped["total_sents"] += 1
 
                 # Add this sentence to the list we are processing
+                # one TokenList object corresponds to one sentence.
                 final_token_list.append(final_tokens)
 
                 if args.dry_run:
@@ -304,6 +332,67 @@ elif args.xlmr:
             t["embedding"] = e
 
         final_results.append(token_list)
+
+elif args.bloom:
+    model_name = args.bloom
+    print(f"Using model {model_name}...")
+    print(f"Processing {args.treebank}...")
+
+    # Setup BLOOM
+    model = BloomModel.from_pretrained(bloom_model).to(device)
+
+    # Subtokenize, keeping original token indices
+    results = []
+    for sent_id, tokenlist in enumerate(tqdm(final_token_list)):
+        labelled_subwords = subword_tokenize(tokenizer, [t["form"] for t in tokenlist])
+        subtoken_indices, subtokens = zip(*labelled_subwords)
+        subtoken_indices_tensor = torch.tensor(subtoken_indices).to(device)
+
+        # We add special tokens to the sequence and remove them after getting the BLOOM output
+        subtoken_ids = torch.tensor(
+            tokenizer.convert_tokens_to_ids(subtokens)).to(device)
+        # the code for bert
+        # subtoken_ids = torch.tensor(
+        #     tokenizer.build_inputs_with_special_inttokens(tokenizer.convert_tokens_to_ids(subtokens))).to(device)
+
+        results.append((tokenlist, subtoken_ids, subtoken_indices_tensor))
+
+    # Prepare to compute BLOOM embeddings
+    model.eval()
+
+    # NOTE: No batching, right now. But could be worthwhile to implement if a speed-up is necessary.
+    for token_list, subtoken_ids, subtoken_indices_tensor in tqdm(results):
+        total += 1
+
+        with torch.no_grad():
+            # shape: (batch_size, max_seq_length_in_batch + 2) why 2 here? BOS, EOS. 
+            # but for BLOOM doesn't have the two special token added.
+            inputs = subtoken_ids.reshape(1, -1)
+
+            # shape: (batch_size, max_seq_length_in_batch)
+            indices = subtoken_indices_tensor.reshape(1, -1)
+
+            # shape: (batch_size, max_seq_length_in_batch + 2, embedding_size)
+            outputs = model(inputs)
+            final_output = outputs[0]
+
+            # shape: (batch_size, max_seq_length_in_batch, embedding_size)
+            # BERT ONLY: Here we remove the special tokens (BOS, EOS)
+            # final_output = final_output[:, 1:, :][:, :-1, :]
+
+            # Average subtokens corresponding to the same word
+            # shape: (batch_size, max_num_tokens_in_batch, embedding_size)
+            token_embeddings = scatter_mean(final_output, indices, dim=1)
+
+        # Convert to python objects
+        embedding_list = [x.cpu().numpy() for x in token_embeddings.squeeze(0).split(1, dim=0)]
+        
+        # erika's note: a vague variable name is used throughout this script.
+        #               please note that token_list here contains all of the words inside one sentence.
+        for t, e in zip(token_list, embedding_list):
+            t["embedding"] = e
+
+        final_results.append(token_list)  
 
 # Keep important parts
 final_results_filtered = []
