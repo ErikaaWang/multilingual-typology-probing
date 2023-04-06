@@ -2,6 +2,9 @@
 
 This repository contains code accompanying the paper: [Same Neurons, Different Languages: Probing Morphosyntax in Multilingual Pre-trained Models (Stańczak et al., NAACL 2022)](https://arxiv.org/abs/2205.02023).
 
+## Hetong's edition: 
+(06/04/2023) commit on: preprocess_treebank.py. Now it allowed to generate word contextual representations using BLOOM. I followed the code logic of the original repo, so all the other argument stills the same. To prepare language embeddings, first follow the instruction in "Generate data" below, and then run `python preprocess_treebank.py UD_English --bloom bloom-560m --use-gpu` to prepare the data for English, or replace `UD_English` woth the language you desire.
+
 ## Setup
 
 These instructions assume that conda is already installed on your system.
