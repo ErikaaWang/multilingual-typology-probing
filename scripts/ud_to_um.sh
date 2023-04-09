@@ -1,5 +1,5 @@
 CONVERSION_SCRIPT_DIR=../ud-compatibility/UD_UM/
-UD_FOLDER=../../flexible-probing-typology/data/ud/ud-treebanks-v2.1/
+UD_FOLDER=../../multilingual-typology-probing/data/ud/ud-treebanks-v2.1/
 
 UD_LANGUAGE_PATTERN="\/([a-z]*)(_[a-zA-Z_]*)*-ud-[a-z\-]*\.conllu"
 
