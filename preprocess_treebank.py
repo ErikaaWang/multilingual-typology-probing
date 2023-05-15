@@ -29,6 +29,7 @@ parser.add_argument("--dry-run", default=False, action="store_true", help="If en
 parser.add_argument("--bert", default=None)
 parser.add_argument("--xlmr", default=None)
 parser.add_argument("--bloom", default=None)
+parser.add_argument("--checkpoint", type=str, default=None)
 parser.add_argument("--use-gpu", action="store_true", default=False)
 parser.add_argument("--skip-existing", action="store_true", default=False)
 parser.add_argument("--tiny-dataset", type=int, default=None)
@@ -38,11 +39,16 @@ args = parser.parse_args()
 if not (args.bert or args.xlmr or args.bloom):
     raise Exception("Must do one of BERT, XLMR and BLOOM, but not more than one")
 
+if (args.bert or args.xlmr) and args.checkpoint:
+    raise Exception("Checkpoint is now only available for BLOOM.")
+
 treebank_path = os.path.join(args.treebanks_root, args.treebank)
 limit_number = args.tiny_dataset
 bert_model = args.bert    #bert-base-multilingual-cased
 xlmr_model = args.xlmr    #xlm-roberta-base or xlm-roberta-large
-bloom_model = 'bigscience/' + args.bloom  #bigscience/bloom-560m
+bloom_model = 'bigscience/' + args.bloom  + ('-intermediate' if args.checkpoint else '') 
+# bigscience/bloom-560m or bigscience/bloom-560m-intermediate
+bloom_checkpoint = 'global_step' + args.checkpoint if args.checkpoint else ''
 print("Embeddings root:", config.EMBEDDINGS_ROOT)
 
 skip_existing = args.skip_existing
@@ -339,7 +345,13 @@ elif args.bloom:
     print(f"Processing {args.treebank}...")
 
     # Setup BLOOM
-    model = BloomModel.from_pretrained(bloom_model).to(device)
+    if args.checkpoint:
+        model = BloomModel.from_pretrained(bloom_model, 
+                                           revision=bloom_checkpoint,
+                                           torch_dtype="auto",
+                                           ).to(device)
+    else:
+        model = BloomModel.from_pretrained(bloom_model).to(device)
 
     # Subtokenize, keeping original token indices
     results = []
