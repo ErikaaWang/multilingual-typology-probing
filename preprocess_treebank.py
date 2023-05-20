@@ -46,7 +46,7 @@ treebank_path = os.path.join(args.treebanks_root, args.treebank)
 limit_number = args.tiny_dataset
 bert_model = args.bert    #bert-base-multilingual-cased
 xlmr_model = args.xlmr    #xlm-roberta-base or xlm-roberta-large
-bloom_model = 'bigscience/' + args.bloom  + ('-intermediate' if args.checkpoint else '') 
+bloom_model = 'bigscience/' + args.bloom
 # bigscience/bloom-560m or bigscience/bloom-560m-intermediate
 bloom_checkpoint = 'global_step' + args.checkpoint if args.checkpoint else ''
 print("Embeddings root:", config.EMBEDDINGS_ROOT)
@@ -341,6 +341,10 @@ elif args.xlmr:
 
 elif args.bloom:
     model_name = args.bloom
+
+    if args.checkpoint:
+        bloom_model = bloom_model + '-intermediate' 
+        model_name = args.bloom  + '-intermediate-' + bloom_checkpoint
     print(f"Using model {model_name}...")
     print(f"Processing {args.treebank}...")
 
@@ -377,20 +381,16 @@ elif args.bloom:
         total += 1
 
         with torch.no_grad():
-            # shape: (batch_size, max_seq_length_in_batch + 2) why 2 here? BOS, EOS. 
-            # but for BLOOM doesn't have the two special token added.
+            # shape: (batch_size, max_seq_length_in_batch
+            #BLOOM doesn't have the two special token added.
             inputs = subtoken_ids.reshape(1, -1)
 
             # shape: (batch_size, max_seq_length_in_batch)
             indices = subtoken_indices_tensor.reshape(1, -1)
 
-            # shape: (batch_size, max_seq_length_in_batch + 2, embedding_size)
+            # shape: (batch_size, max_seq_length_in_batch, embedding_size)
             outputs = model(inputs)
             final_output = outputs[0]
-
-            # shape: (batch_size, max_seq_length_in_batch, embedding_size)
-            # BERT ONLY: Here we remove the special tokens (BOS, EOS)
-            # final_output = final_output[:, 1:, :][:, :-1, :]
 
             # Average subtokens corresponding to the same word
             # shape: (batch_size, max_num_tokens_in_batch, embedding_size)
