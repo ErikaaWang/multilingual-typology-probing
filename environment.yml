@@ -25,8 +25,8 @@ dependencies:
   - scikit-learn
   - conllu
   - transformers
-  - lang2vec
   - pip:
+      - lang2vec
       - wandb
       - git+https://github.com/harvardnlp/pytorch-struct@v0.5
       - torch-scatter -f https://data.pyg.org/whl/torch-1.10.0+cu113.html
