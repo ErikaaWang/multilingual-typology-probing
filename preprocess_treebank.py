@@ -454,3 +454,8 @@ with open(test_file, "wb") as h:
 
 with open(dev_file, "wb") as h:
     pickle.dump(dev, h)
+
+print('Files saved: ', train_file)
+print('Files saved: ', test_file)
+print('Files saved: ', dev_file)
+
