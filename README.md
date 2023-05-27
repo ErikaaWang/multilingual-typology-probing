@@ -7,6 +7,8 @@ This repository contains code accompanying the paper: [Same Neurons, Different L
 
 (27/05/2023) run `./scripts/preprocess_bloom_560m.sh` to preprocess all the relevant trebanks for BLOOM-560m.
 
+(27/05/2023) !!!when training the probes use bloom embeddings, the arg embedding must contain 'bloom'.
+
 ## Setup
 
 These instructions assume that conda is already installed on your system.

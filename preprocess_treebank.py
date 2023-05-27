@@ -381,7 +381,7 @@ elif args.bloom:
         total += 1
 
         with torch.no_grad():
-            # shape: (batch_size, max_seq_length_in_batch
+            # shape: (batch_size, max_seq_length_in_batch)
             #BLOOM doesn't have the two special token added.
             inputs = subtoken_ids.reshape(1, -1)
 
@@ -395,6 +395,7 @@ elif args.bloom:
             # Average subtokens corresponding to the same word
             # shape: (batch_size, max_num_tokens_in_batch, embedding_size)
             token_embeddings = scatter_mean(final_output, indices, dim=1)
+            # print(token_embeddings.shape)
 
         # Convert to python objects
         embedding_list = [x.cpu().numpy() for x in token_embeddings.squeeze(0).split(1, dim=0)]
