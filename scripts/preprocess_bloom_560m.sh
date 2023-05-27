@@ -16,11 +16,11 @@ CORPUS=($(cat scripts/languages_bloom.lst))
 echo "now processing task id: ${SLURM_ARRAY_TASK_ID}"
 echo "CORPUS: ${CORPUS[${SLURM_ARRAY_TASK_ID}]}"
 
-OUTPUT_FILE=${SCRATCH_DIRECTORY}/output/output_${CORPUS[${SLURM_ARRAY_TASK_ID}]}.txt
+# OUTPUT_FILE=${SCRATCH_DIRECTORY}/output/output_${CORPUS[${SLURM_ARRAY_TASK_ID}]}.txt
 source /home/${USER}/.bashrc
 source activate multilingual-typology-probing
 
 echo "python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-560m --use-gpu"
-python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-560m --use-gpu > ${OUTPUT_FILE}
+python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-560m --use-gpu
 
 # after finish, move data from scratch to home
