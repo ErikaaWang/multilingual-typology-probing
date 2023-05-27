@@ -7,7 +7,7 @@ HOME_ROOT_DIRECTORY=/home/${USER}
 SCRATCH_ROOT_DIRECTORY=/disk/scratch/${USER}
 
 HOME_DATA_DIR=${HOME_ROOT_DIRECTORY}/multilingual-typology-probing/data/ud/ud-treebanks-v2.1
-SCRATCH_DATA_DIR=${SCRATCH_DIRECTORY}/data/ud/ud-treebanks-v2.1
+SCRATCH_DATA_DIR=${SCRATCH_ROOT_DIRECTORY}/data/ud/ud-treebanks-v2.1
 
 # first copy input data from home dir to scratch dir
 # cp ${HOME_DATA_DIR}/* ${SCRATCH_DATA_DIR}
