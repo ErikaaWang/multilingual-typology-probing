@@ -12,6 +12,7 @@ SCRATCH_DATA_DIR=${SCRATCH_ROOT_DIRECTORY}/data/ud/ud-treebanks-v2.1
 # first copy input data from home dir to scratch dir
 # cp ${HOME_DATA_DIR}/* ${SCRATCH_DATA_DIR}
 
+# loop over languages in parallel
 CORPUS=($(cat scripts/languages_bloom.lst))
 echo "now processing task id: ${SLURM_ARRAY_TASK_ID}"
 echo "CORPUS: ${CORPUS[${SLURM_ARRAY_TASK_ID}]}"
@@ -20,7 +21,7 @@ echo "CORPUS: ${CORPUS[${SLURM_ARRAY_TASK_ID}]}"
 source /home/${USER}/.bashrc
 source activate multilingual-typology-probing
 
-echo "python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-560m --use-gpu"
-python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-560m --use-gpu
+echo "python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --treebanks-root $HOME_DATA_DIR --bloom bloom-560m --use-gpu"
+python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --treebanks-root $HOME_DATA_DIR --bloom bloom-560m --use-gpu
 
 # after finish, move data from scratch to home
