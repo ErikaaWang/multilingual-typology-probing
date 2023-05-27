@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --array=1-16
+#SBATCH --array=0-15
 
 USER=s2308470
 HOME_ROOT_DIRECTORY=/home/${USER}
@@ -12,16 +12,15 @@ SCRATCH_DATA_DIR=${SCRATCH_DIRECTORY}/data/ud/ud-treebanks-v2.1
 # first copy input data from home dir to scratch dir
 # cp ${HOME_DATA_DIR}/* ${SCRATCH_DATA_DIR}
 
-
-# python test.py > output_${SLURM_ARRAY_TASK_ID}.txt
-
-LANGUAGES=($(cat scripts/languages_bloom.lst))
+CORPUS=($(cat scripts/languages_bloom.lst))
 echo "now processing task id: ${SLURM_ARRAY_TASK_ID}"
-echo "LANGUAGE: ${LANGUAGES[${SLURM_ARRAY_TASK_ID}-1]}"
+echo "CORPUS: ${CORPUS[${SLURM_ARRAY_TASK_ID}]}"
 
-# conda activate multilingual-typology-probing
+OUTPUT_FILE=${SCRATCH_DIRECTORY}/output/output_${CORPUS[${SLURM_ARRAY_TASK_ID}]}.txt
 
-# for CORPUS in $(cat scripts/languages_bloom.lst); do
-#   echo "python preprocess_treebank.py $CORPUS --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-560m --use-gpu"
-#   python preprocess_treebank.py $CORPUS --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-560m --use-gpu
-# done
+conda activate multilingual-typology-probing
+
+echo "python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-560m --use-gpu"
+python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-560m --use-gpu > ${OUTPUT_FILE}
+
+# after finish, move data from scratch to home
