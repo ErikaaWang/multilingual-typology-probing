@@ -15,9 +15,9 @@ SCRATCH_DATA_DIR=${SCRATCH_DIRECTORY}/data/ud/ud-treebanks-v2.1
 
 # python test.py > output_${SLURM_ARRAY_TASK_ID}.txt
 
-LANGUAGES=$(cat scripts/languages_bloom.lst)
+LANGUAGES=($(cat scripts/languages_bloom.lst))
 echo "now processing task id: ${SLURM_ARRAY_TASK_ID}"
-echo "LANGUAGE: ${LANGUAGES[${SLURM_ARRAY_TASK_ID}]}"
+echo "LANGUAGE: ${LANGUAGES[${SLURM_ARRAY_TASK_ID}-1]}"
 
 # conda activate multilingual-typology-probing
 
