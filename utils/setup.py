@@ -37,9 +37,14 @@ def get_attributes():
 
     return [prop.strip("\n") for prop in properties]
 
-def get_languages():
-    with open("scripts/languages_common.lst", "r") as langs:
-        languages = langs.readlines()
+def get_languages(args):
+
+    if 'bloom' in args.embedding:
+        with open("scripts/languages_bloom.lst", "r") as langs:
+            languages = langs.readlines()
+    else:
+        with open("scripts/languages_common.lst", "r") as langs:
+            languages = langs.readlines()
 
     return [lang.strip("\n") for lang in languages]
 
@@ -61,7 +66,7 @@ def load_word_lists_for_language(args, test_branch = False) -> Dict[str, List[Wo
     # Read files and obtain word list
     config = get_config()
     data_root = Path(config["data"]["datasets_root"])
-    languages = get_languages()
+    languages = get_languages(args)
 
     train: List[Word] = []
     dev: List[Word] = []

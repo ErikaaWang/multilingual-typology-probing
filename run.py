@@ -23,9 +23,9 @@ parser.add_argument("--trainer", choices=["fixed", "upperbound", "lowerbound", "
                     introduced in \"Intrinsic Probing through Dimension Selection\".")
 parser.add_argument("--gpu", default=False, action="store_true", help="Pass this flag if you want to use a \
                     GPU to speed up the experiments. Multiple GPUs are not supported.")
-parser.add_argument("--embedding", type=str, choices=["bert-base-multilingual-cased", "xlm-roberta-base",
-                    "xlm-roberta-large"], default="bert-base-multilingual-cased", 
-                    help="Type of embedding, either bert or xlmr.")
+parser.add_argument("--embedding", type=str, default=argparse.SUPPRESS, 
+                    help="Type of embedding, either bert, xlmr or bloom.")
+# choices=["bert-base-multilingual-cased", "xlm-roberta-base", "xlm-roberta-large", 'bloom-560m']
 parser.add_argument("--trainer-num-epochs", type=int, default=5000, help="The maximum number of epochs that \
                     probes should be trainer for.")
 parser.add_argument("--probe-num-layers", type=int, default=1, help="The number of layers the probe should \
