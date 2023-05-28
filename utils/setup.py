@@ -93,9 +93,6 @@ def load_word_lists_for_language(args, test_branch = False) -> Dict[str, List[Wo
         file_path_train = next(treebank_path.glob(f"*-train-{embedding}.pkl"))
         file_path_dev = next(treebank_path.glob(f"*-dev-{embedding}.pkl"))
         file_path_test = next(treebank_path.glob(f"*-test-{embedding}.pkl"))
-        print('Using embedding from file: ', file_path_train, file_path_test, file_path_dev)
-
-        exit()
 
         train.extend(convert_pickle_to_word_list(file_path_train))
         dev.extend(convert_pickle_to_word_list(file_path_dev))
