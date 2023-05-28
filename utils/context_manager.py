@@ -7,6 +7,8 @@ class cd:
 
     def __enter__(self):
         self.savedPath = os.getcwd()
+        if not os.path.exists(self.newPath):
+            os.makedirs(self.newPath)
         os.chdir(self.newPath)
 
     def __exit__(self, etype, value, traceback):
