@@ -153,7 +153,7 @@ def greedy(args):
     # the probe once and then zeroing out dimensions we want to ignore. This trainer modifies the
     # neural_probe_model object.
     print("Pre-training probe (if possible)...")
-    with cd(args.result_path):
+    with cd(os.path.join(os.getcwd(), args.result_path)):
         trainer.train()
 
     # ::::: EVALUATING THE PROBE :::::
