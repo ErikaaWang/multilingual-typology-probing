@@ -34,8 +34,10 @@ parser.add_argument("--activation", type=str, default="sigmoid", help="The activ
                     in the MLP.")
 parser.add_argument("--probe-num-hidden-units", type=int, default=50, help="The number of hidden units in \
                     each layer of the probe.")
-parser.add_argument("--output-file", type=str, help="If provided, results of the experiment will be written \
-                    to this file in JSON format.")
+parser.add_argument("--result-path", type=str, required=True, help="The path to save the model and output file. \
+                    The current template used is: results/$model/$language/$properties/")
+# parser.add_argument("--output-file", type=str, help="If provided, results of the experiment will be written \
+#                     to this file in JSON format.")
 parser.add_argument("--temperature", type=float, default=1.0, help="Temperature parameter in Gumbel \
                     softmax.")
 parser.add_argument("--temp-annealing", type=bool, default=False, help="Pass this flag if you want to use \

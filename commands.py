@@ -7,7 +7,7 @@ from tqdm import tqdm
 import os
 import numpy as np
 import wandb
-
+from utils.context_manager import cd
 
 def manual(args):
     if args.wandb:
@@ -153,7 +153,8 @@ def greedy(args):
     # the probe once and then zeroing out dimensions we want to ignore. This trainer modifies the
     # neural_probe_model object.
     print("Pre-training probe (if possible)...")
-    trainer.train()
+    with cd(args.result_path):
+        trainer.train()
 
     # ::::: EVALUATING THE PROBE :::::
     # We figure out what the parameters (the "specification") of the probe should be, for the current
@@ -205,8 +206,8 @@ def greedy(args):
         wandb.run.summary.update({f"{k}_ALL": v for k, v in metrics_test.items()})
 
     # Save to file
-    if args.output_file:
-        with open(args.output_file, "w") as h:
-            json.dump(results, h)
+    output_file_name = os.path.join(args.result_path, 'loginfo.json')
+    with open(output_file_name, "w") as h:
+        json.dump(results, h)
 
-        print(f"Saved experiment outputs to '{args.output_file}'.")
+    print(f"Saved experiment outputs to '{output_file_name}'.")
