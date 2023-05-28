@@ -72,7 +72,7 @@ def load_word_lists_for_language(args, test_branch = False) -> Dict[str, List[Wo
     dev: List[Word] = []
     test: List[Word] = []
 
-
+    # args.language can be a list of languages
     language = args.test_language if test_branch else args.language
     if isinstance(language, str):
         queued_languages = [language]
@@ -93,6 +93,9 @@ def load_word_lists_for_language(args, test_branch = False) -> Dict[str, List[Wo
         file_path_train = next(treebank_path.glob(f"*-train-{embedding}.pkl"))
         file_path_dev = next(treebank_path.glob(f"*-dev-{embedding}.pkl"))
         file_path_test = next(treebank_path.glob(f"*-test-{embedding}.pkl"))
+        print('Using embedding from file: ', file_path_train, file_path_test, file_path_dev)
+
+        exit()
 
         train.extend(convert_pickle_to_word_list(file_path_train))
         dev.extend(convert_pickle_to_word_list(file_path_dev))
