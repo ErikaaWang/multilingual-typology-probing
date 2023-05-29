@@ -1,7 +1,6 @@
 data/
 data.zip
-slurm*
-results/
+environment_original.yml
 
 .DS_Store
 
