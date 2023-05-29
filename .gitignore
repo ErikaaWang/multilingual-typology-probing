@@ -1,8 +1,13 @@
 data/
 data.zip
+slurm*
+results/
+
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 **/__pycache__/
+__pycache__/
 *.py[cod]
 
 # C extensions
