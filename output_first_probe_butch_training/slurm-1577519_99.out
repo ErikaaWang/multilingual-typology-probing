@@ -1,0 +1,6 @@
+Setting up datasets (['UD_Chinese-CFL'], Animacy) and probes...
+  0%|          | 0/5593 [00:00<?, ?it/s]  0%|          | 1/5593 [00:00<10:11,  9.15it/s] 59%|█████▊    | 3272/5593 [00:00<00:00, 18536.53it/s]100%|██████████| 5593/5593 [00:00<00:00, 20146.06it/s]
+  0%|          | 0/1207 [00:00<?, ?it/s]100%|██████████| 1207/1207 [00:00<00:00, 38938.91it/s]
+  0%|          | 0/456 [00:00<?, ?it/s]100%|██████████| 456/456 [00:00<00:00, 36646.22it/s]
+/home/s2308470/multilingual-typology-probing/utils/setup.py:139: UserWarning: Not enough classes to run experiment. This attribute has 0 classes with at least 20 examples across all splits (need at least 2). Skipping...
+  warnings.warn(f"Not enough classes to run experiment. This attribute has {len(property_value_list)}"

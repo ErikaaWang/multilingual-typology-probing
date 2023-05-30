@@ -1,0 +1,6 @@
+Setting up datasets (['UD_Tamil'], Polarity) and probes...
+  0%|          | 0/6848 [00:00<?, ?it/s]  0%|          | 1/6848 [00:00<13:53,  8.21it/s] 38%|███▊      | 2617/6848 [00:00<00:00, 14125.10it/s] 79%|███████▊  | 5384/6848 [00:00<00:00, 20020.21it/s]100%|██████████| 6848/6848 [00:00<00:00, 18224.92it/s]
+  0%|          | 0/673 [00:00<?, ?it/s]100%|██████████| 673/673 [00:00<00:00, 33056.57it/s]
+  0%|          | 0/1114 [00:00<?, ?it/s]100%|██████████| 1114/1114 [00:00<00:00, 31208.99it/s]
+/home/s2308470/multilingual-typology-probing/utils/setup.py:139: UserWarning: Not enough classes to run experiment. This attribute has 1 classes with at least 20 examples across all splits (need at least 2). Skipping...
+  warnings.warn(f"Not enough classes to run experiment. This attribute has {len(property_value_list)}"

@@ -1,0 +1,6 @@
+Setting up datasets (['UD_Vietnamese'], ArgumentMark) and probes...
+  0%|          | 0/33419 [00:00<?, ?it/s]  0%|          | 1/33419 [00:00<1:04:37,  8.62it/s] 10%|▉         | 3311/33419 [00:00<00:01, 18265.47it/s] 18%|█▊        | 6064/33419 [00:00<00:01, 15398.84it/s] 28%|██▊       | 9475/33419 [00:00<00:01, 21058.23it/s] 38%|███▊      | 12859/33419 [00:00<00:00, 24913.21it/s] 49%|████▉     | 16325/33419 [00:00<00:00, 27847.93it/s] 59%|█████▉    | 19768/33419 [00:00<00:00, 29826.50it/s] 69%|██████▉   | 23198/33419 [00:00<00:00, 31168.19it/s] 80%|███████▉  | 26660/33419 [00:01<00:00, 32202.46it/s] 90%|████████▉ | 29960/33419 [00:01<00:00, 22732.72it/s]100%|█████████▉| 33406/33419 [00:01<00:00, 25441.78it/s]100%|██████████| 33419/33419 [00:01<00:00, 24539.72it/s]
+  0%|          | 0/3929 [00:00<?, ?it/s]100%|██████████| 3929/3929 [00:00<00:00, 41415.15it/s]
+  0%|          | 0/6406 [00:00<?, ?it/s] 65%|██████▍   | 4142/6406 [00:00<00:00, 41408.69it/s]100%|██████████| 6406/6406 [00:00<00:00, 41344.88it/s]
+/home/s2308470/multilingual-typology-probing/utils/setup.py:139: UserWarning: Not enough classes to run experiment. This attribute has 0 classes with at least 20 examples across all splits (need at least 2). Skipping...
+  warnings.warn(f"Not enough classes to run experiment. This attribute has {len(property_value_list)}"
