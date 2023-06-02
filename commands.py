@@ -155,7 +155,7 @@ def greedy(args):
     print("Pre-training probe (if possible)...")
     # args.result_path:  ./results
     # current file tree structure: /results/$model/$experiment-name/$language/$properties/
-    result_path = os.path.join(args.result_path, args.embedding, args.experiment_name, args.language, args.args.attribute)
+    result_path = os.path.join(args.result_path, args.embedding, args.experiment_name, args.language, args.attribute)
     with cd(result_path):
         trainer.train()
 
