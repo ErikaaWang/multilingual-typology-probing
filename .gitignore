@@ -4,6 +4,7 @@ environment_original.yml
 bloom-560m_50_1000000_pvals.pkl
 
 debug*.ipynb
+util_command.ipynb
 
 heatmap_plot.ipynb
 
