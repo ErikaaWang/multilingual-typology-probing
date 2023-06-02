@@ -23,6 +23,8 @@ _DEFAULT_TREEBANKS_ROOT = path.join(config.DATA_ROOT, "ud/ud-treebanks-v2.1")
 
 parser = ArgumentParser()
 parser.add_argument("treebank", type=str)  # e.g. "UD_Portuguese-Bosque"
+parser.add_argument("--experiment-name", type=str, default=None, help="This name will be used to create\
+                    a new dict to save the result pkl files. ")
 parser.add_argument("--treebanks-root", type=str, default=_DEFAULT_TREEBANKS_ROOT)
 parser.add_argument("--dry-run", default=False, action="store_true", help="If enabled, will not actually \
                     compute any embeddings, but go over the dataset and do everything else.")
@@ -30,6 +32,11 @@ parser.add_argument("--bert", default=None)
 parser.add_argument("--xlmr", default=None)
 parser.add_argument("--bloom", default=None)
 parser.add_argument("--checkpoint", type=str, default=None)
+parser.add_argument("--inter-layer", type=int, default=None, choices=range(1, 25), help='default to None. \
+                    Preprocess the embedding from intermediate layer. available layer: [1,24]. 25 is the last\
+                     layer, which will be saved by default. ')
+parser.add_argument("--index-switching", action="store_true", default=False, help='If enabled, the i-th output\
+                     embedding will be paired with the (i+1)-th token.')
 parser.add_argument("--use-gpu", action="store_true", default=False)
 parser.add_argument("--skip-existing", action="store_true", default=False)
 parser.add_argument("--tiny-dataset", type=int, default=None)
@@ -42,6 +49,9 @@ if not (args.bert or args.xlmr or args.bloom):
 if (args.bert or args.xlmr) and args.checkpoint:
     raise Exception("Checkpoint is now only available for BLOOM.")
 
+if args.index_switching and args.inter_layer:
+    raise Exception("The index switching can only be used for the last hidden layer until now.")
+
 treebank_path = os.path.join(args.treebanks_root, args.treebank)
 limit_number = args.tiny_dataset
 bert_model = args.bert    #bert-base-multilingual-cased
@@ -49,6 +59,10 @@ xlmr_model = args.xlmr    #xlm-roberta-base or xlm-roberta-large
 bloom_model = 'bigscience/' + args.bloom
 # bigscience/bloom-560m or bigscience/bloom-560m-intermediate
 bloom_checkpoint = 'global_step' + args.checkpoint if args.checkpoint else ''
+if args.inter_layer:
+    layer_index = args.inter_layer - 1
+
+
 print("Embeddings root:", config.EMBEDDINGS_ROOT)
 
 skip_existing = args.skip_existing
@@ -60,8 +74,8 @@ if args.use_gpu:
 
 def subword_tokenize(tokenizer, tokens: List[str]) -> List[Tuple[int, str]]:
     """
-    erika's note: map subtoken to its word by index. 
-
+    erika's note: map subtoken to its word by index. prepare for scatter_mean.
+   
     Returns: List of subword tokens, List of indices mapping each subword token to one real token(word).
     """
     subtokens = [tokenizer.tokenize(t) for t in tokens]
@@ -197,7 +211,7 @@ for f in os.listdir(treebank_path):
                 if args.bert or args.xlmr:
                     model_context_length = 512
                 else: # for BLOOM
-                    model_context_length = 1024
+                    model_context_length = 2048
                 labelled_subwords = subword_tokenize(tokenizer, [t["form"] for t in final_tokens])
                 subtoken_indices, subtokens = zip(*labelled_subwords)
                 if len(subtokens) >= model_context_length:
@@ -264,15 +278,15 @@ if args.bert:
 
             # shape: (batch_size, max_seq_length_in_batch + 2, embedding_size)
             outputs = model(inputs)
-            final_output = outputs[0]
+            last_hidden_state = outputs[0]
 
             # shape: (batch_size, max_seq_length_in_batch, embedding_size)
             # Here we remove the special tokens (BOS, EOS)
-            final_output = final_output[:, 1:, :][:, :-1, :]
+            last_hidden_state = last_hidden_state[:, 1:, :][:, :-1, :]
 
             # Average subtokens corresponding to the same word
             # shape: (batch_size, max_num_tokens_in_batch, embedding_size)
-            token_embeddings = scatter_mean(final_output, indices, dim=1)
+            token_embeddings = scatter_mean(last_hidden_state, indices, dim=1)
 
         # Convert to python objects
         embedding_list = [x.cpu().numpy() for x in token_embeddings.squeeze(0).split(1, dim=0)]
@@ -321,15 +335,15 @@ elif args.xlmr:
 
             # shape: (batch_size, max_seq_length_in_batch + 2, embedding_size)
             outputs = model(inputs)
-            final_output = outputs[0]
+            last_hidden_state = outputs[0]
 
             # shape: (batch_size, max_seq_length_in_batch, embedding_size)
             # Here we remove the special tokens (BOS, EOS)
-            final_output = final_output[:, 1:, :][:, :-1, :]
+            last_hidden_state = last_hidden_state[:, 1:, :][:, :-1, :]
 
             # Average subtokens corresponding to the same word
             # shape: (batch_size, max_num_tokens_in_batch, embedding_size)
-            token_embeddings = scatter_mean(final_output, indices, dim=1)
+            token_embeddings = scatter_mean(last_hidden_state, indices, dim=1)
 
         # Convert to python objects
         embedding_list = [x.cpu().numpy() for x in token_embeddings.squeeze(0).split(1, dim=0)]
@@ -348,6 +362,9 @@ elif args.bloom:
     print(f"Using model {model_name}...")
     print(f"Processing {args.treebank}...")
 
+    last_layer_flag = True
+    index_switch_flag = False
+
     # Setup BLOOM
     if args.checkpoint:
         model = AutoModelForCausalLM.from_pretrained(bloom_model, 
@@ -355,8 +372,11 @@ elif args.bloom:
                                            torch_dtype="auto",
                                            ).to(device)
     else:
-        model = BloomModel.from_pretrained(bloom_model).to(device)
+        model = BloomModel.from_pretrained(bloom_model, output_hidden_states=True).to(device)
 
+    if (not model.config.output_hidden_states) and args.inter_layer:
+        raise Exception("The model configuration is not able to output intermediate hidden layers.")
+    
     # Subtokenize, keeping original token indices
     results = []
     for sent_id, tokenlist in enumerate(tqdm(final_token_list)):
@@ -390,12 +410,19 @@ elif args.bloom:
 
             # shape: (batch_size, max_seq_length_in_batch, embedding_size)
             outputs = model(inputs)
-            final_output = outputs[0]
+            last_hidden_state = outputs[0]
+            hidden_states = outputs[2]
+            if args.inter_layer:
+                output_embedding = hidden_states[layer_index]
+                last_layer_flag = False
+            else:
+                output_embedding = last_hidden_state
+                last_layer_flag = True
+                
 
             # Average subtokens corresponding to the same word
             # shape: (batch_size, max_num_tokens_in_batch, embedding_size)
-            token_embeddings = scatter_mean(final_output, indices, dim=1)
-            # print(token_embeddings.shape)
+            token_embeddings = scatter_mean(output_embedding, indices, dim=1)
 
         # Convert to python objects
         embedding_list = [x.cpu().numpy() for x in token_embeddings.squeeze(0).split(1, dim=0)]
@@ -406,6 +433,13 @@ elif args.bloom:
             t["embedding"] = e
 
         final_results.append(token_list)  
+
+if last_layer_flag:
+    print("The output embedding from the last layer was saved.")
+elif index_switch_flag:
+    print("The output embedding from the last layer was saved with an index switching.")
+else:
+    print(f"The output embedding from the layer at index {layer_index} was saved.")
 
 # Keep important parts
 final_results_filtered = []
@@ -446,6 +480,14 @@ print("Save data sets")
 train_file = path.join(treebank_path, "{}-train-{}.pkl".format(args.treebank, model_name))
 test_file = path.join(treebank_path, "{}-test-{}.pkl".format(args.treebank, model_name))
 dev_file = path.join(treebank_path, "{}-dev-{}.pkl".format(args.treebank, model_name))
+
+if args.experiment_name:
+    file_path = path.join(treebank_path, args.experiment_name)
+    if not path.exists(file_path):
+        os.makedirs(file_path)
+    train_file = path.join(file_path, "{}-train-{}.pkl".format(args.treebank, model_name))
+    test_file = path.join(file_path, "{}-test-{}.pkl".format(args.treebank, model_name))
+    dev_file = path.join(file_path, "{}-dev-{}.pkl".format(args.treebank, model_name))
 
 with open(train_file, "wb") as h:
     pickle.dump(train, h)

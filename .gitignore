@@ -3,6 +3,10 @@ data.zip
 environment_original.yml
 bloom-560m_50_1000000_pvals.pkl
 
+debug*.ipynb
+
+heatmap_plot.ipynb
+
 .DS_Store
 
 # Byte-compiled / optimized / DLL files

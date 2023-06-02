@@ -11,6 +11,8 @@ This repository contains code accompanying the paper: [Same Neurons, Different L
 
 (27/05/2023) !!!when training the probes use bloom embeddings, the arg embedding must contain 'bloom'.
 
+(02/06/2023) enable BLOOM intermediate layer in preprocess_treebank.py. run `python preprocess_treebank.py UD_English --experiment-name give_a_name --bloom bloom-560m --inter-layer n_layer --use-gpu` to prepare the data for English by the `n_layer`. NOTE: args `experiment-name` is compulsory when using inter-layer, otherwise the file in default path will be replaced. 
+
 ## Setup
 
 These instructions assume that conda is already installed on your system.
