@@ -121,7 +121,6 @@ def file(args):
 
 
 def greedy(args):
-    print(type(args.language))
     if args.wandb:
         tags = [' '.join(args.language), args.trainer, args.attribute, "sweep"]
         if args.wandb_tag is not None:
@@ -156,8 +155,8 @@ def greedy(args):
     print("Pre-training probe (if possible)...")
     # args.result_path:  ./results
     # current file tree structure: /results/$model/$experiment-name/$language/$properties/
-    print(type(args.language))
-    result_path = os.path.join(args.result_path, args.embedding, args.experiment_name, args.language, args.attribute)
+    language_dir = ''.join(map(str, args.language))
+    result_path = os.path.join(args.result_path, args.embedding, args.experiment_name, language_dir, args.attribute)
     with cd(result_path):
         trainer.train()
 
