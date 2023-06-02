@@ -477,17 +477,16 @@ print(f"Final sizes: {len(train)}/{len(dev)}/{len(test)}")
 # Save final results
 print("Save data sets")
 
-train_file = path.join(treebank_path, "{}-train-{}.pkl".format(args.treebank, model_name))
-test_file = path.join(treebank_path, "{}-test-{}.pkl".format(args.treebank, model_name))
-dev_file = path.join(treebank_path, "{}-dev-{}.pkl".format(args.treebank, model_name))
-
 if args.experiment_name:
     file_path = path.join(treebank_path, args.experiment_name)
-    if not path.exists(file_path):
-        os.makedirs(file_path)
-    train_file = path.join(file_path, "{}-train-{}.pkl".format(args.treebank, model_name))
-    test_file = path.join(file_path, "{}-test-{}.pkl".format(args.treebank, model_name))
-    dev_file = path.join(file_path, "{}-dev-{}.pkl".format(args.treebank, model_name))
+else:
+    file_path = path.join(treebank_path, 'last-layer')
+
+if not path.exists(file_path):
+    os.makedirs(file_path)
+train_file = path.join(file_path, "{}-train-{}.pkl".format(args.treebank, model_name))
+test_file = path.join(file_path, "{}-test-{}.pkl".format(args.treebank, model_name))
+dev_file = path.join(file_path, "{}-dev-{}.pkl".format(args.treebank, model_name))
 
 with open(train_file, "wb") as h:
     pickle.dump(train, h)
