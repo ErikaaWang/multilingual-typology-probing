@@ -2,6 +2,8 @@ import argparse
 
 import commands
 
+import config
+
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 subparsers = parser.add_subparsers(description="General script to run experiments. Different modes are \
@@ -12,6 +14,9 @@ subparsers = parser.add_subparsers(description="General script to run experiment
 parser.add_argument("--language", type=str, nargs="+", required=True, help="The three-letter code for the language \
                     or multiple languages you want to probe (e.g., eng). Should be the same as used by Unimorph.",
                     default=argparse.SUPPRESS)
+parser.add_argument("--experiment-name", type=str, default=None, help="This name will be used to create \
+                    a new dict to save the result model and output files. This should be the same with the one \
+                    used in preprocess, otherwise it cannot load the correct embedding file to train the probes.")
 parser.add_argument("--attribute", type=str, required=True, help="The attribute (aka. Unimorph dimension) \
                     to be probed (e.g., \"Number\", \"Gender and Noun Class\").", default=argparse.SUPPRESS)
 parser.add_argument("--trainer", choices=["fixed", "upperbound", "lowerbound", "qda", "poisson",
@@ -34,8 +39,8 @@ parser.add_argument("--activation", type=str, default="sigmoid", help="The activ
                     in the MLP.")
 parser.add_argument("--probe-num-hidden-units", type=int, default=50, help="The number of hidden units in \
                     each layer of the probe.")
-parser.add_argument("--result-path", type=str, required=True, help="The path to save the model and output file. \
-                    The current template used is: results/$model/$language/$properties/")
+parser.add_argument("--result-path", type=str, default= config.RESULT_ROOT, help="The path to save the model and output file. \
+                    The default used us: ./results")
 # parser.add_argument("--output-file", type=str, help="If provided, results of the experiment will be written \
 #                     to this file in JSON format.")
 parser.add_argument("--temperature", type=float, default=1.0, help="Temperature parameter in Gumbel \

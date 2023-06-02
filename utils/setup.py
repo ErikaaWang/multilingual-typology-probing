@@ -90,9 +90,14 @@ def load_word_lists_for_language(args, test_branch = False) -> Dict[str, List[Wo
 
         embedding = args.embedding
         treebank_path = data_root / treebank
-        file_path_train = next(treebank_path.glob(f"*-train-{embedding}.pkl"))
-        file_path_dev = next(treebank_path.glob(f"*-dev-{embedding}.pkl"))
-        file_path_test = next(treebank_path.glob(f"*-test-{embedding}.pkl"))
+        file_path = treebank_path /  args.experiment_name
+        if args.experiment_name is None or not file_path.exists():
+            raise Exception('The experiment name does not exist in data path. Please \
+                ensure you run preprocess with the correct experiment name. ')
+
+        file_path_train = next(file_path.glob(f"*-train-{embedding}.pkl"))
+        file_path_dev = next(file_path.glob(f"*-dev-{embedding}.pkl"))
+        file_path_test = next(file_path.glob(f"*-test-{embedding}.pkl"))
 
         train.extend(convert_pickle_to_word_list(file_path_train))
         dev.extend(convert_pickle_to_word_list(file_path_dev))

@@ -153,7 +153,10 @@ def greedy(args):
     # the probe once and then zeroing out dimensions we want to ignore. This trainer modifies the
     # neural_probe_model object.
     print("Pre-training probe (if possible)...")
-    with cd(os.path.join(os.getcwd(), args.result_path)):
+    # args.result_path:  ./results
+    # current file tree structure: /results/$model/$experiment-name/$language/$properties/
+    result_path = os.path.join(args.result_path, args.embedding, args.experiment_name, args.language, args.args.attribute)
+    with cd(result_path):
         trainer.train()
 
     # ::::: EVALUATING THE PROBE :::::
@@ -206,7 +209,7 @@ def greedy(args):
         wandb.run.summary.update({f"{k}_ALL": v for k, v in metrics_test.items()})
 
     # Save to file
-    output_file_name = os.path.join(args.result_path, 'loginfo.json')
+    output_file_name = os.path.join(result_path, 'loginfo.json')
     with open(output_file_name, "w") as h:
         json.dump(results, h)
 
