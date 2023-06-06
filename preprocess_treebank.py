@@ -11,7 +11,7 @@ import os
 from os import path
 import yaml
 from transformers import BertTokenizer, BertModel, XLMRobertaTokenizer, XLMRobertaModel
-from transformers import BloomTokenizerFast, BloomModel, AutoModelForCausalLM
+from transformers import BloomTokenizerFast, BloomModel, AutoModel
 import pickle
 from argparse import ArgumentParser
 from utils.parser import parse_unimorph_features
@@ -367,7 +367,7 @@ elif args.bloom:
 
     # Setup BLOOM
     if args.checkpoint:
-        model = AutoModelForCausalLM.from_pretrained(bloom_model, 
+        model = AutoModel.from_pretrained(bloom_model, 
                                            revision=bloom_checkpoint,
                                            torch_dtype="auto",
                                            ).to(device)
