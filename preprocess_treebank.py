@@ -23,6 +23,7 @@ _DEFAULT_TREEBANKS_ROOT = path.join(config.DATA_ROOT, "ud/ud-treebanks-v2.1")
 
 parser = ArgumentParser()
 parser.add_argument("treebank", type=str)  # e.g. "UD_Portuguese-Bosque"
+# experiment_name is last-layer by default. If inter-layer is used, experiment name need to be given.
 parser.add_argument("--experiment-name", type=str, default=None, help="This name will be used to create\
                     a new dict to save the result pkl files. ")
 parser.add_argument("--treebanks-root", type=str, default=_DEFAULT_TREEBANKS_ROOT)
@@ -41,6 +42,9 @@ parser.add_argument("--use-gpu", action="store_true", default=False)
 parser.add_argument("--skip-existing", action="store_true", default=False)
 parser.add_argument("--tiny-dataset", type=int, default=None)
 args = parser.parse_args()
+
+if args.inter_layer and not args.experiment_name:
+    raise Exception("Please give an experiment name when you use inter-layer, otherwise it will overwrite the last layer embeddings.")
 
 
 if not (args.bert or args.xlmr or args.bloom):
