@@ -35,8 +35,8 @@ parser.add_argument("--checkpoint", type=str, default=None)
 parser.add_argument("--inter-layer", type=int, default=None, choices=range(1, 25), help='default to None. \
                     Preprocess the embedding from intermediate layer. available layer: [1,24]. 25 is the last\
                      layer, which will be saved by default. ')
-parser.add_argument("--index-switching", action="store_true", default=False, help='If enabled, the i-th output\
-                     embedding will be paired with the (i+1)-th token.')
+# parser.add_argument("--index-switching", action="store_true", default=False, help='If enabled, the i-th output\
+#                      embedding will be paired with the (i+1)-th token.')
 parser.add_argument("--use-gpu", action="store_true", default=False)
 parser.add_argument("--skip-existing", action="store_true", default=False)
 parser.add_argument("--tiny-dataset", type=int, default=None)
@@ -49,8 +49,8 @@ if not (args.bert or args.xlmr or args.bloom):
 if (args.bert or args.xlmr) and args.checkpoint:
     raise Exception("Checkpoint is now only available for BLOOM.")
 
-if args.index_switching and args.inter_layer:
-    raise Exception("The index switching can only be used for the last hidden layer until now.")
+# if args.index_switching and args.inter_layer:
+#     raise Exception("The index switching can only be used for the last hidden layer until now.")
 
 treebank_path = os.path.join(args.treebanks_root, args.treebank)
 limit_number = args.tiny_dataset
@@ -363,13 +363,14 @@ elif args.bloom:
     print(f"Processing {args.treebank}...")
 
     last_layer_flag = True
-    index_switch_flag = False
+    # index_switch_flag = False
 
     # Setup BLOOM
     if args.checkpoint:
-        model = AutoModel.from_pretrained(bloom_model, 
+        model = BloomModel.from_pretrained(bloom_model, 
                                            revision=bloom_checkpoint,
                                            torch_dtype="auto",
+                                           output_hidden_states=True,
                                            ).to(device)
     else:
         model = BloomModel.from_pretrained(bloom_model, output_hidden_states=True).to(device)
@@ -436,8 +437,8 @@ elif args.bloom:
 
 if last_layer_flag:
     print("The output embedding from the last layer was saved.")
-elif index_switch_flag:
-    print("The output embedding from the last layer was saved with an index switching.")
+# elif index_switch_flag:
+#     print("The output embedding from the last layer was saved with an index switching.")
 else:
     print(f"The output embedding from the layer at index {layer_index} was saved.")
 
