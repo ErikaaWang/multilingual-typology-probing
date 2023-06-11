@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#SBATCH --array=0-15
-LAYER=17
+#SBATCH --array=1-13
+LAYER=13
 CHECKPOINT=$1
 USER=s2308470
 HOME_ROOT_DIRECTORY=/home/${USER}
