@@ -373,7 +373,6 @@ elif args.bloom:
     if args.checkpoint:
         model = BloomModel.from_pretrained(bloom_model, 
                                            revision=bloom_checkpoint,
-                                           torch_dtype="auto",
                                            output_hidden_states=True,
                                            ).to(device)
     else:
@@ -440,7 +439,7 @@ elif args.bloom:
         #               please note that token_list here contains all of the words inside one sentence.
         for t, e in zip(token_list, embedding_list):
             t["embedding"] = e
-            print("the embedding type is:", e.dtype)
+            # print("the embedding type is:", e.dtype)
 
         final_results.append(token_list)  
 
@@ -484,30 +483,30 @@ test = [t for t in final_results_filtered if t['lemma'] in test_words]
 
 print(f"Final sizes: {len(train)}/{len(dev)}/{len(test)}")
 
-# # Save final results
-# print("Save data sets")
+# Save final results
+print("Save data sets")
 
-# if args.experiment_name:
-#     file_path = path.join(treebank_path, args.experiment_name)
-# else:
-#     file_path = path.join(treebank_path, 'last-layer')
+if args.experiment_name:
+    file_path = path.join(treebank_path, args.experiment_name)
+else:
+    file_path = path.join(treebank_path, 'last-layer')
 
-# if not path.exists(file_path):
-#     os.makedirs(file_path)
-# train_file = path.join(file_path, "{}-train-{}.pkl".format(args.treebank, model_name))
-# test_file = path.join(file_path, "{}-test-{}.pkl".format(args.treebank, model_name))
-# dev_file = path.join(file_path, "{}-dev-{}.pkl".format(args.treebank, model_name))
+if not path.exists(file_path):
+    os.makedirs(file_path)
+train_file = path.join(file_path, "{}-train-{}.pkl".format(args.treebank, model_name))
+test_file = path.join(file_path, "{}-test-{}.pkl".format(args.treebank, model_name))
+dev_file = path.join(file_path, "{}-dev-{}.pkl".format(args.treebank, model_name))
 
-# with open(train_file, "wb") as h:
-#     pickle.dump(train, h)
+with open(train_file, "wb") as h:
+    pickle.dump(train, h)
 
-# with open(test_file, "wb") as h:
-#     pickle.dump(test, h)
+with open(test_file, "wb") as h:
+    pickle.dump(test, h)
 
-# with open(dev_file, "wb") as h:
-#     pickle.dump(dev, h)
+with open(dev_file, "wb") as h:
+    pickle.dump(dev, h)
 
-# print('Files saved: ', train_file)
-# print('Files saved: ', test_file)
-# print('Files saved: ', dev_file)
+print('Files saved: ', train_file)
+print('Files saved: ', test_file)
+print('Files saved: ', dev_file)
 
