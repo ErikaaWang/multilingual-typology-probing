@@ -415,11 +415,12 @@ elif args.bloom:
 
             # shape: (batch_size, max_seq_length_in_batch, embedding_size)
             outputs = model(inputs)
-            print("output:", outputs)
+            # print("output:", outputs)
             last_hidden_state = outputs[0]
             hidden_states = outputs[2]
-            print("hidden_states:", hidden_states)
-            print('dtype: ', hidden_states[layer_index])
+
+            # print("hidden_states:", hidden_states)
+            # print('dtype: ', hidden_states[layer_index])
             if args.inter_layer:
                 output_embedding = hidden_states[layer_index]
                 last_layer_flag = False
@@ -439,7 +440,7 @@ elif args.bloom:
         #               please note that token_list here contains all of the words inside one sentence.
         for t, e in zip(token_list, embedding_list):
             t["embedding"] = e
-            print("the embedding type is:", type(e))
+            print("the embedding type is:", e.dtype)
 
         final_results.append(token_list)  
 
