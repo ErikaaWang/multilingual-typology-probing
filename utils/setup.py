@@ -103,6 +103,11 @@ def load_word_lists_for_language(args, test_branch = False) -> Dict[str, List[Wo
         dev.extend(convert_pickle_to_word_list(file_path_dev))
         test.extend(convert_pickle_to_word_list(file_path_test))
 
+        print("dataset loaded from path: ")
+        print(file_path_train)
+        print(file_path_dev)
+        print(file_path_test)
+
         # Shuffle data
         random.shuffle(train)
         random.shuffle(dev)
