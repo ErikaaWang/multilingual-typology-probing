@@ -1,7 +1,6 @@
 data/
 data.zip
 environment_original.yml
-bloom-560m_*pvals.pkl
 
 debug*.ipynb
 util_command.ipynb
