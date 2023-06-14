@@ -1,6 +1,5 @@
 data/
 data.zip
-environment_original.yml
 
 debug*.ipynb
 util_command.ipynb
