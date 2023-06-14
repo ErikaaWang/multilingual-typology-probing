@@ -156,8 +156,8 @@ for f in os.listdir(treebank_path):
                 tokenizer = XLMRobertaTokenizer.from_pretrained(args.xlmr)
             elif args.bert:
                 tokenizer = BertTokenizer.from_pretrained("bert-base-multilingual-cased")
-            else:
-                tokenizer = BloomTokenizerFast.from_pretrained(bloom_model)
+            elif args.bloom:
+                tokenizer = BloomTokenizerFast.from_pretrained("bigscience/bloom")
                 #tokenizer = BloomTokenizerFast.from_pretrained("bigscience/bloom-560m")
 
             for sent_id, tokenlist in enumerate(tqdm(
