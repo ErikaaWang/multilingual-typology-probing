@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --array=1-14
+#SBATCH --array=0-14
 LAYER=17
 CHECKPOINT=$1
 USER=s2308470

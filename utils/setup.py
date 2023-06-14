@@ -194,8 +194,10 @@ def setup_probe(args, dataset_train: WordClassificationDataset, report_progress:
     # We use a general neural probe
     device = "cuda:0" if args.gpu else "cpu"
     embedding_size = 1024 if args.embedding == "xlm-roberta-large" else 768
-    if 'bloom' in args.embedding:
+    if 'bloom-560m' in args.embedding:
         embedding_size = 1024
+    if 'bloom-1b1' in args.embedding:
+        embedding_size = 1536
     neural_probe_model = MLPProbeModel(
         embedding_size=embedding_size, num_classes=len(dataset_train.keys()),
         hidden_size=args.probe_num_hidden_units, num_layers=args.probe_num_layers,
