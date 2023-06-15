@@ -1,0 +1,69 @@
+now processing task id: 1
+CORPUS: UD_Basque
+python preprocess_treebank.py UD_Basque --experiment-name inter-layer-13 --treebanks-root /home/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1 --bloom bloom-1b1 --checkpoint 300000 --inter-layer 13 --use-gpu
+Embeddings root: embeddings
+Using GPU
+0it [00:00, ?it/s]59it [00:00, 586.73it/s]127it [00:00, 638.77it/s]192it [00:00, 642.44it/s]263it [00:00, 668.17it/s]330it [00:00, 668.58it/s]404it [00:00, 689.93it/s]473it [00:00, 681.36it/s]542it [00:00, 670.08it/s]615it [00:00, 681.64it/s]690it [00:01, 700.35it/s]761it [00:01, 689.52it/s]834it [00:01, 701.42it/s]907it [00:01, 707.68it/s]979it [00:01, 710.35it/s]1052it [00:01, 713.60it/s]1124it [00:01, 714.69it/s]1198it [00:01, 720.80it/s]1272it [00:01, 723.97it/s]1345it [00:01, 719.25it/s]1417it [00:02, 702.36it/s]1490it [00:02, 709.40it/s]1562it [00:02, 467.52it/s]1638it [00:02, 528.54it/s]1711it [00:02, 575.21it/s]1779it [00:02, 601.36it/s]1846it [00:02, 618.76it/s]1913it [00:02, 630.54it/s]1980it [00:03, 640.23it/s]2059it [00:03, 682.04it/s]2130it [00:03, 686.53it/s]2200it [00:03, 682.81it/s]2270it [00:03, 680.17it/s]2339it [00:03, 670.35it/s]2407it [00:03, 672.62it/s]2475it [00:03, 663.23it/s]2546it [00:03, 674.70it/s]2620it [00:03, 691.76it/s]2691it [00:04, 697.12it/s]2761it [00:04, 686.52it/s]2830it [00:04, 671.59it/s]2899it [00:04, 675.86it/s]2970it [00:04, 684.94it/s]3041it [00:04, 689.56it/s]3114it [00:04, 700.66it/s]3185it [00:04, 686.62it/s]3254it [00:04, 613.73it/s]3317it [00:05, 575.32it/s]3376it [00:05, 559.41it/s]3433it [00:05, 534.81it/s]3488it [00:05, 532.86it/s]3542it [00:05, 517.40it/s]3595it [00:05, 506.62it/s]3646it [00:05, 499.55it/s]3698it [00:05, 503.74it/s]3750it [00:05, 507.55it/s]3805it [00:06, 519.38it/s]3866it [00:06, 545.62it/s]3921it [00:06, 531.81it/s]3975it [00:06, 524.02it/s]4028it [00:06, 520.73it/s]4081it [00:06, 512.35it/s]4133it [00:06, 505.46it/s]4185it [00:06, 509.49it/s]4238it [00:06, 515.31it/s]4292it [00:06, 521.91it/s]4345it [00:07, 506.52it/s]4396it [00:07, 501.12it/s]4449it [00:07, 508.87it/s]4502it [00:07, 513.03it/s]4554it [00:07, 506.32it/s]4607it [00:07, 513.11it/s]4659it [00:07, 510.91it/s]4713it [00:07, 515.63it/s]4769it [00:07, 525.78it/s]4825it [00:07, 534.99it/s]4879it [00:08, 531.60it/s]4933it [00:08, 518.02it/s]4989it [00:08, 525.83it/s]5042it [00:08, 524.52it/s]5095it [00:08, 514.64it/s]5148it [00:08, 517.60it/s]5200it [00:08, 304.26it/s]5252it [00:09, 345.40it/s]5303it [00:09, 380.48it/s]5353it [00:09, 406.79it/s]5396it [00:09, 577.75it/s]
+0it [00:00, ?it/s]65it [00:00, 648.49it/s]136it [00:00, 683.57it/s]205it [00:00, 678.81it/s]274it [00:00, 682.99it/s]343it [00:00, 664.37it/s]412it [00:00, 672.12it/s]481it [00:00, 675.95it/s]556it [00:00, 694.47it/s]627it [00:00, 697.46it/s]699it [00:01, 701.97it/s]776it [00:01, 721.15it/s]849it [00:01, 695.30it/s]925it [00:01, 713.11it/s]999it [00:01, 717.73it/s]1071it [00:01, 695.04it/s]1141it [00:01, 612.46it/s]1205it [00:01, 593.39it/s]1266it [00:01, 576.28it/s]1325it [00:02, 560.74it/s]1382it [00:02, 535.11it/s]1436it [00:02, 521.57it/s]1489it [00:02, 516.05it/s]1541it [00:02, 500.87it/s]1592it [00:02, 488.57it/s]1646it [00:02, 500.18it/s]1699it [00:02, 506.08it/s]1756it [00:02, 524.02it/s]1798it [00:02, 600.86it/s]
+0it [00:00, ?it/s]59it [00:00, 584.33it/s]138it [00:00, 703.78it/s]214it [00:00, 727.84it/s]287it [00:00, 697.98it/s]359it [00:00, 704.81it/s]430it [00:00, 694.04it/s]500it [00:00, 687.93it/s]570it [00:00, 687.02it/s]639it [00:00, 685.50it/s]708it [00:01, 680.20it/s]777it [00:01, 680.40it/s]846it [00:01, 674.45it/s]914it [00:01, 672.50it/s]982it [00:01, 670.32it/s]1055it [00:01, 687.11it/s]1124it [00:01, 629.48it/s]1188it [00:01, 587.83it/s]1248it [00:01, 574.33it/s]1307it [00:02, 541.85it/s]1362it [00:02, 542.64it/s]1417it [00:02, 519.82it/s]1470it [00:02, 495.01it/s]1524it [00:02, 506.97it/s]1576it [00:02, 510.03it/s]1628it [00:02, 499.12it/s]1679it [00:02, 496.32it/s]1732it [00:02, 504.19it/s]1784it [00:02, 504.78it/s]1799it [00:03, 595.76it/s]
+Skipped:
+{'total_sents': 8993}
+
+Total: 0
+Using model bloom-1b1-intermediate-global_step300000...
+Processing UD_Basque...
+Traceback (most recent call last):
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/urllib3/connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/urllib3/util/connection.py", line 95, in create_connection
+    raise err
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    sock.connect(sa)
+OSError: [Errno 101] Network is unreachable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/urllib3/connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/urllib3/connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/urllib3/connectionpool.py", line 1042, in _validate_conn
+    conn.connect()
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/urllib3/connection.py", line 363, in connect
+    self.sock = conn = self._new_conn()
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/urllib3/connection.py", line 186, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7fafee18cb80>: Failed to establish a new connection: [Errno 101] Network is unreachable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    retries = retries.increment(
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/urllib3/util/retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /bigscience/bloom-1b1-intermediate/resolve/global_step300000/tf_model.h5 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fafee18cb80>: Failed to establish a new connection: [Errno 101] Network is unreachable'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "preprocess_treebank.py", line 374, in <module>
+    model = BloomModel.from_pretrained(bloom_model, 
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/transformers/modeling_utils.py", line 2472, in from_pretrained
+    if has_file(pretrained_model_name_or_path, TF2_WEIGHTS_NAME, **has_file_kwargs):
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/transformers/utils/hub.py", line 610, in has_file
+    r = requests.head(url, headers=headers, allow_redirects=False, proxies=proxies, timeout=10)
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/requests/api.py", line 100, in head
+    return request("head", url, **kwargs)
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /bigscience/bloom-1b1-intermediate/resolve/global_step300000/tf_model.h5 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fafee18cb80>: Failed to establish a new connection: [Errno 101] Network is unreachable'))
