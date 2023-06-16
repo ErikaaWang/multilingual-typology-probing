@@ -2,7 +2,7 @@
 
 #SBATCH --array=0-13
 LAYER=13
-CHECKPOINT=$1
+# CHECKPOINT=$1
 USER=s2308470
 HOME_ROOT_DIRECTORY=/home/${USER}
 SCRATCH_ROOT_DIRECTORY=/disk/scratch/${USER}
@@ -23,7 +23,7 @@ source /home/${USER}/.bashrc
 source activate multilingual-typology-probing
 
 
-echo "python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --experiment-name inter-layer-$LAYER --treebanks-root $HOME_DATA_DIR --bloom bloom-1b1 --checkpoint $CHECKPOINT --inter-layer $LAYER --use-gpu"
-python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --experiment-name inter-layer-$LAYER --treebanks-root $HOME_DATA_DIR --bloom bloom-1b1 --checkpoint $CHECKPOINT --inter-layer $LAYER --use-gpu
+echo "python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --experiment-name inter-layer-$LAYER --treebanks-root $HOME_DATA_DIR --bloom bloom-1b1 --inter-layer $LAYER --use-gpu"
+python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --experiment-name inter-layer-$LAYER --treebanks-root $HOME_DATA_DIR --bloom bloom-1b1 --inter-layer $LAYER --use-gpu
 
 # after finish, move data from scratch to home
