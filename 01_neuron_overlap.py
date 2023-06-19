@@ -34,14 +34,19 @@ if args.attribute and args.language:
 if not args.attribute and not args.language:
     raise Exception("Need to supply exactly one of attribute or language")
 
-if args.embedding not in ["bert-base-multilingual-cased", "xlm-roberta-base", "xlm-roberta-large"]:
-    raise Exception("Need to supply an embedding.")
+# if args.embedding not in ["bert-base-multilingual-cased", "xlm-roberta-base", "xlm-roberta-large"]:
+#     raise Exception("Need to supply an embedding.")
 
 top_k = args.top_k
 attribute = args.attribute
 language = args.language
 embedding = args.embedding
 embedding_size = 1024 if embedding == "xlm-roberta-large" else 768
+if 'bloom-560m' in embedding:
+    embedding_size = 1024
+
+if 'bloom-1b1' in embedding:
+    embedding_size = 1536
 
 
 """
@@ -78,7 +83,8 @@ else:
 
 
 DEFAULT_RESULTS_FOLDER = "results/01_bert_results/" if embedding == "bert-base-multilingual-cased" else "results/01_xlmr_results/"
-DEFAULT_FILE_FORMAT = DEFAULT_RESULTS_FOLDER + "{lang}---{attribute}---{embedding}.json"
+DEFAULT_RESULTS_FOLDER = "results/" + embedding + '/'
+DEFAULT_FILE_FORMAT = DEFAULT_RESULTS_FOLDER + "{lang}/{attribute}/loginfo.json"
 file_list = [f for f in listdir(DEFAULT_RESULTS_FOLDER)
              if isfile(join(DEFAULT_RESULTS_FOLDER, f)) and ".json" in f]
 RESULTS = []
@@ -314,6 +320,10 @@ if not os.path.exists(p_vals_cache_file):
         dimensionality = 768
     elif embedding == "xlm-roberta-large":
         dimensionality = 1024
+    elif 'bloom-560m' in embedding:
+        dimensionality = 1024
+    elif 'bloom-1b1' in embedding:
+        dimensionality = 1536
     else:
         raise Exception("Embedding has to be BERT!")
         dimensionality = 300
