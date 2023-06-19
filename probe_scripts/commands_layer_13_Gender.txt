@@ -1,3 +1,4 @@
+python run.py --language UD_Arabic --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Arabic --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step1000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Arabic --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step10000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Arabic --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step100000 greedy --selection-size 50 --selection-criterion mi
@@ -6,6 +7,7 @@ python run.py --language UD_Arabic --experiment-name inter-layer-13 --attribute 
 python run.py --language UD_Arabic --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step400000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Arabic --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step500000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Arabic --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step600000 greedy --selection-size 50 --selection-criterion mi
+python run.py --language UD_Catalan --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Catalan --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step1000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Catalan --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step10000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Catalan --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step100000 greedy --selection-size 50 --selection-criterion mi
@@ -14,6 +16,7 @@ python run.py --language UD_Catalan --experiment-name inter-layer-13 --attribute
 python run.py --language UD_Catalan --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step400000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Catalan --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step500000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Catalan --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step600000 greedy --selection-size 50 --selection-criterion mi
+python run.py --language UD_French --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_French --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step1000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_French --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step10000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_French --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step100000 greedy --selection-size 50 --selection-criterion mi
@@ -22,6 +25,7 @@ python run.py --language UD_French --experiment-name inter-layer-13 --attribute 
 python run.py --language UD_French --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step400000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_French --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step500000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_French --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step600000 greedy --selection-size 50 --selection-criterion mi
+python run.py --language UD_Hindi --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Hindi --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step1000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Hindi --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step10000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Hindi --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step100000 greedy --selection-size 50 --selection-criterion mi
@@ -30,6 +34,7 @@ python run.py --language UD_Hindi --experiment-name inter-layer-13 --attribute G
 python run.py --language UD_Hindi --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step400000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Hindi --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step500000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Hindi --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step600000 greedy --selection-size 50 --selection-criterion mi
+python run.py --language UD_Marathi --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Marathi --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step1000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Marathi --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step10000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Marathi --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step100000 greedy --selection-size 50 --selection-criterion mi
@@ -38,6 +43,7 @@ python run.py --language UD_Marathi --experiment-name inter-layer-13 --attribute
 python run.py --language UD_Marathi --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step400000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Marathi --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step500000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Marathi --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step600000 greedy --selection-size 50 --selection-criterion mi
+python run.py --language UD_Portuguese --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Portuguese --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step1000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Portuguese --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step10000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Portuguese --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step100000 greedy --selection-size 50 --selection-criterion mi
@@ -46,6 +52,7 @@ python run.py --language UD_Portuguese --experiment-name inter-layer-13 --attrib
 python run.py --language UD_Portuguese --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step400000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Portuguese --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step500000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Portuguese --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step600000 greedy --selection-size 50 --selection-criterion mi
+python run.py --language UD_Spanish --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Spanish --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step1000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Spanish --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step10000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Spanish --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step100000 greedy --selection-size 50 --selection-criterion mi
@@ -54,6 +61,7 @@ python run.py --language UD_Spanish --experiment-name inter-layer-13 --attribute
 python run.py --language UD_Spanish --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step400000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Spanish --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step500000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Spanish --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step600000 greedy --selection-size 50 --selection-criterion mi
+python run.py --language UD_Tamil --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Tamil --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step1000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Tamil --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step10000 greedy --selection-size 50 --selection-criterion mi
 python run.py --language UD_Tamil --experiment-name inter-layer-13 --attribute Gender --trainer poisson --gpu --embedding bloom-1b1-intermediate-global_step100000 greedy --selection-size 50 --selection-criterion mi
