@@ -24,6 +24,7 @@ parser.add_argument("--top_k", type=int, default=50)
 parser.add_argument("--attribute", default=None)
 parser.add_argument("--language", default=None)
 parser.add_argument("--embedding", default=None)
+parser.add_argument("--experiment-name", default='last-layer')
 parser.add_argument("--show-plot", default=False, action="store_true")
 parser.add_argument("--random-baseline", default=False, action="store_true")
 args = parser.parse_args()
@@ -41,6 +42,7 @@ top_k = args.top_k
 attribute = args.attribute
 language = args.language
 embedding = args.embedding
+experiment_name = args.experiment_name
 embedding_size = 1024 if embedding == "xlm-roberta-large" else 768
 if 'bloom-560m' in embedding:
     embedding_size = 1024
@@ -82,28 +84,31 @@ else:
 """
 
 
-DEFAULT_RESULTS_FOLDER = "results/01_bert_results/" if embedding == "bert-base-multilingual-cased" else "results/01_xlmr_results/"
-DEFAULT_RESULTS_FOLDER = "results/" + embedding + '/'
+# DEFAULT_RESULTS_FOLDER = "results/01_bert_results/" if embedding == "bert-base-multilingual-cased" else "results/01_xlmr_results/"
+DEFAULT_RESULTS_FOLDER = "results/" + embedding + '/' + experiment_name + '/'
 DEFAULT_FILE_FORMAT = DEFAULT_RESULTS_FOLDER + "{lang}/{attribute}/loginfo.json"
-file_list = [f for f in listdir(DEFAULT_RESULTS_FOLDER)
-             if isfile(join(DEFAULT_RESULTS_FOLDER, f)) and ".json" in f]
+# file_list = [f for f in listdir(DEFAULT_RESULTS_FOLDER)
+#              if isfile(join(DEFAULT_RESULTS_FOLDER, f)) and ".json" in f]
 RESULTS = []
-
 rel_treebanks = []
-with open("scripts/languages_common.lst", "r") as h:
-    for l in h:
-        rel_treebank = l.strip("\n")
-        rel_treebanks.append(rel_treebank)
+# with open("scripts/languages_common.lst", "r") as h:
+#     for l in h:
+#         rel_treebank = l.strip("\n")
+#         rel_treebanks.append(rel_treebank)
 
-for f in file_list:
-    match = f.split("---")
-    l = match[0]
-    a = match[1]
+# for f in file_list:
+#     match = f.split("---")
+#     l = match[0]
+#     a = match[1]
 
-    RESULTS.append((l, a))
+for lang in listdir(DEFAULT_RESULTS_FOLDER):
+    if lang == 'UD_Chinese-CFL':
+        continue
+    rel_treebanks.append(lang)
+    for attr in listdir(join(DEFAULT_RESULTS_FOLDER, lang)):
+        RESULTS.append((lang, attr))
 
 RESULTS = [(l, a) for (l, a) in RESULTS]
-#print(RESULTS)
 
 
 def convert_language_code(treebank_name):
@@ -360,6 +365,7 @@ if args.attribute:
 
     x_labels = labels
     y_labels = [[lang_to_family[x] for x in labels], labels]
+
 elif args.language:
     labels, (similarity_matrix, extra_data) = compute_similarity_for_language(language, results_raw, top_k)
 
@@ -395,8 +401,9 @@ fig.update_layout(
 if args.random_baseline:
     embedding += "-random"
 
+IMG_BASE_DIR = f"experiments/heatmaps/{embedding}/{experiment_name}"
+
 if args.attribute:
-    IMG_BASE_DIR = "experiments/heatmaps"
     Path(f"{IMG_BASE_DIR}/attributes/interactive/").mkdir(parents=True, exist_ok=True)
     fig.write_html(f"{IMG_BASE_DIR}/attributes/interactive/{embedding}_{attribute}.html")
     Path(f"{IMG_BASE_DIR}/attributes/images/").mkdir(parents=True, exist_ok=True)
