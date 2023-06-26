@@ -65,6 +65,8 @@ parser.add_argument("--wandb", default=False, action="store_true", help="If enab
                     appropriate Weights & Biases project.")
 parser.add_argument("--wandb-tag", type=str, help="This can be used to set a tag on the Weights & Biases \
                     run (e.g., for easier filtering down the road).")
+parser.add_argument("--wandb-offline", default=False, action="store_true", help="If enabled, logs runs will \
+                    saved to a offline path and need to be synced later. ")
 
 # ::::: MANUAL MODE :::::
 # You can manually specify the dimensions you want to check--mostly for development and debugging purposes.
