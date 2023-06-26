@@ -233,7 +233,7 @@ iso_to_wals = {
     'pol': 'pol',
     'por': 'por',
     'ara': 'ams',
-    # 'tam': 'tml',
+    'tam': 'tml',
     'slk': 'svk',
     'lat': 'spa',
     'fas': 'prs',
@@ -246,6 +246,7 @@ iso_to_wals = {
     'tur': 'tur',
     'ukr': 'ukr',
     'urd': 'urd',
+    'mar': 'mhi',
 }
 
 families = {
@@ -283,7 +284,8 @@ families = {
     'tml': 'Dravidian',
     'tur': 'Altaic',
     'ukr': 'Indo-European',
-    'urd': 'Indo-European'
+    'urd': 'Indo-European',
+    'mhi': 'Indo-European'
 }
 
 genus = {
@@ -321,7 +323,8 @@ genus = {
     'tml': 'Southern Dravidian',
     'tur': 'Turkic',
     'ukr': 'Slavic',
-    'urd': 'Indic'
+    'urd': 'Indic',
+    'mhi': 'Indic'
 }
 
 merged = {}
