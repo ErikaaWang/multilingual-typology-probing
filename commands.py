@@ -128,7 +128,7 @@ def greedy(args):
 
         config = vars(args)
         config.pop("func", None)
-        run = wandb.init(project="flexible-probing-typology", config=config, tags=tags)
+        run = wandb.init(project="flexible-probing-typology", config=config, tags=tags, mode='offline')
         run.name = f"{args.attribute}-{args.language} ({args.trainer}) ({args.selection_criterion}) \
             [{wandb.run.id}]"
         run.save()
