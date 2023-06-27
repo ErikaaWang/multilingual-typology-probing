@@ -2,6 +2,8 @@ wandb/
 data/
 data.zip
 
+**/current_model.pkl
+
 debug*.ipynb
 util_command.ipynb
 playground.ipynb
