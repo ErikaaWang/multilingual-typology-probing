@@ -247,6 +247,8 @@ iso_to_wals = {
     'ukr': 'ukr',
     'urd': 'urd',
     'mar': 'mhi',
+    'vie': 'vie',
+    'zho': 'mnd',
 }
 
 families = {
@@ -285,7 +287,9 @@ families = {
     'tur': 'Altaic',
     'ukr': 'Indo-European',
     'urd': 'Indo-European',
-    'mhi': 'Indo-European'
+    'mhi': 'Indo-European',
+    'vie': 'Austro-Asiatic',
+    'mnd': 'Sino-Tibetan',
 }
 
 genus = {
@@ -324,7 +328,9 @@ genus = {
     'tur': 'Turkic',
     'ukr': 'Slavic',
     'urd': 'Indic',
-    'mhi': 'Indic'
+    'mhi': 'Indic',
+    'vie': 'Vietic',
+    'mnd': 'Chinese',
 }
 
 merged = {}
