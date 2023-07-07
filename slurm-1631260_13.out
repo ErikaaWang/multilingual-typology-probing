@@ -1,0 +1,33 @@
+now processing task id: 13
+CORPUS: UD_Vietnamese
+python preprocess_treebank.py UD_Vietnamese --experiment-name inter-layer-17 --treebanks-root /home/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1 --bloom bloom-1b7 --checkpoint 1000 --inter-layer 17 --use-gpu
+Embeddings root: embeddings
+Using GPU
+0it [00:00, ?it/s]43it [00:00, 424.84it/s]104it [00:00, 529.21it/s]158it [00:00, 531.85it/s]218it [00:00, 555.52it/s]277it [00:00, 565.18it/s]334it [00:00, 558.91it/s]392it [00:00, 565.28it/s]449it [00:00, 547.32it/s]508it [00:00, 557.22it/s]566it [00:01, 563.57it/s]623it [00:01, 531.41it/s]677it [00:01, 529.02it/s]731it [00:01, 523.15it/s]784it [00:01, 520.69it/s]800it [00:01, 538.27it/s]
+0it [00:00, ?it/s]51it [00:00, 508.81it/s]103it [00:00, 512.24it/s]158it [00:00, 525.96it/s]211it [00:00, 510.93it/s]266it [00:00, 522.03it/s]319it [00:00, 499.82it/s]370it [00:00, 496.65it/s]426it [00:00, 515.71it/s]481it [00:00, 525.82it/s]540it [00:01, 542.72it/s]595it [00:01, 525.12it/s]648it [00:01, 343.11it/s]700it [00:01, 380.98it/s]749it [00:01, 404.95it/s]796it [00:01, 420.88it/s]800it [00:01, 459.85it/s]
+0it [00:00, ?it/s]33it [00:00, 324.31it/s]83it [00:00, 423.60it/s]128it [00:00, 432.46it/s]176it [00:00, 447.57it/s]221it [00:00, 440.38it/s]267it [00:00, 443.58it/s]312it [00:00, 440.11it/s]358it [00:00, 445.26it/s]403it [00:00, 430.62it/s]452it [00:01, 447.38it/s]497it [00:01, 443.00it/s]543it [00:01, 447.85it/s]594it [00:01, 462.67it/s]641it [00:01, 443.20it/s]687it [00:01, 447.21it/s]736it [00:01, 459.51it/s]787it [00:01, 472.14it/s]835it [00:01, 458.60it/s]882it [00:01, 445.82it/s]933it [00:02, 460.26it/s]980it [00:02, 452.97it/s]1029it [00:02, 461.54it/s]1087it [00:02, 495.08it/s]1140it [00:02, 504.45it/s]1191it [00:02, 488.11it/s]1242it [00:02, 490.62it/s]1292it [00:02, 473.64it/s]1340it [00:02, 465.38it/s]1390it [00:03, 470.26it/s]1400it [00:03, 458.09it/s]
+Skipped:
+{'total_sents': 3000}
+
+Total: 0
+Using model bloom-1b7-intermediate-global_step1000...
+Processing UD_Vietnamese...
+Traceback (most recent call last):
+  File "preprocess_treebank.py", line 374, in <module>
+    model = BloomModel.from_pretrained(bloom_model, 
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/transformers/modeling_utils.py", line 1878, in to
+    return super().to(*args, **kwargs)
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1145, in to
+    return self._apply(convert)
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 797, in _apply
+    module._apply(fn)
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 797, in _apply
+    module._apply(fn)
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 797, in _apply
+    module._apply(fn)
+  [Previous line repeated 1 more time]
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 820, in _apply
+    param_applied = fn(param)
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1143, in convert
+    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 64.00 MiB (GPU 0; 5.94 GiB total capacity; 5.79 GiB already allocated; 35.31 MiB free; 5.79 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
