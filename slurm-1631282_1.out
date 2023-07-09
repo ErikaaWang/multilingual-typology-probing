@@ -1,4 +1,0 @@
-now processing task id: 1
-CORPUS: UD_Basque
-python preprocess_treebank.py UD_Basque --experiment-name inter-layer-17 --treebanks-root /home/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1 --bloom bloom-1b7 --checkpoint 100000 --inter-layer 17 --use-gpu
-slurmstepd-landonia02: error: *** JOB 1631321 ON landonia02 CANCELLED AT 2023-07-04T23:21:16 ***

@@ -1,8 +1,0 @@
-now processing task id: 8
-CORPUS: UD_Marathi
-python preprocess_treebank.py UD_Marathi --experiment-name inter-layer-17 --treebanks-root /home/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1 --bloom bloom-1b7 --checkpoint 50000 --inter-layer 17 --use-gpu
-Embeddings root: embeddings
-Using GPU
-0it [00:00, ?it/s]73it [00:00, 727.73it/s]165it [00:00, 835.32it/s]253it [00:00, 852.70it/s]340it [00:00, 856.34it/s]373it [00:00, 832.99it/s]
-0it [00:00, ?it/s]46it [00:00, 607.81it/s]
-0it [00:00, ?it/s]47it [00:00, 513.45it/s]slurmstepd-landonia19: error: *** JOB 1631310 ON landonia19 CANCELLED AT 2023-07-04T23:21:16 ***

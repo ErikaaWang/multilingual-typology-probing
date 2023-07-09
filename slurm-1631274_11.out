@@ -1,33 +1,0 @@
-now processing task id: 11
-CORPUS: UD_Tamil
-python preprocess_treebank.py UD_Tamil --experiment-name inter-layer-17 --treebanks-root /home/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1 --bloom bloom-1b7 --checkpoint 10000 --inter-layer 17 --use-gpu
-Embeddings root: embeddings
-Using GPU
-0it [00:00, ?it/s]30it [00:00, 298.57it/s]70it [00:00, 356.27it/s]112it [00:00, 379.92it/s]120it [00:00, 371.11it/s]
-0it [00:00, ?it/s]31it [00:00, 305.11it/s]67it [00:00, 335.55it/s]105it [00:00, 354.16it/s]152it [00:00, 398.17it/s]193it [00:00, 401.52it/s]234it [00:00, 389.09it/s]276it [00:00, 396.50it/s]321it [00:00, 412.78it/s]366it [00:00, 422.69it/s]400it [00:01, 395.14it/s]
-0it [00:00, ?it/s]36it [00:00, 354.96it/s]80it [00:00, 397.15it/s]
-Skipped:
-{'total_sents': 600}
-
-Total: 0
-Using model bloom-1b7-intermediate-global_step10000...
-Processing UD_Tamil...
-Traceback (most recent call last):
-  File "preprocess_treebank.py", line 374, in <module>
-    model = BloomModel.from_pretrained(bloom_model, 
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/transformers/modeling_utils.py", line 1878, in to
-    return super().to(*args, **kwargs)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1145, in to
-    return self._apply(convert)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 797, in _apply
-    module._apply(fn)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 797, in _apply
-    module._apply(fn)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 797, in _apply
-    module._apply(fn)
-  [Previous line repeated 1 more time]
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 820, in _apply
-    param_applied = fn(param)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1143, in convert
-    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
-torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 64.00 MiB (GPU 0; 5.94 GiB total capacity; 5.79 GiB already allocated; 35.31 MiB free; 5.79 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

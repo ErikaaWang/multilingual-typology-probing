@@ -28,7 +28,7 @@ You will also need to generate the data.
 
 1. First run `mkdir unimorph && cd unimorph && wget https://raw.githubusercontent.com/unimorph/um-canonicalize/master/um_canonicalize/tags.yaml`
 2. Download [UD 2.1 treebanks](https://universaldependencies.org/) and put them in `data/ud/ud-treebanks-v2.1`
-3. Clone the modified [UD converter](git@github.com:ltorroba/ud-compatibility.git) to this repo's parent folder and then convert the treebank annotations to the UniMorph schema `./scripts/ud_to_um.sh`.
+3. Clone the modified [UD converter](https://github.com/ltorroba/ud-compatibility) to this repo's parent folder and then convert the treebank annotations to the UniMorph schema `./scripts/ud_to_um.sh`.
 4. Run `./scripts/preprocess_bert.sh`, `./scripts/preprocess_xlmr_base.sh`, and `./scripts/preprocess_xlmr_large.sh` to preprocess all the relevant treebanks using relevant embeddings. This may take a while.
 
 ## Run Experiments

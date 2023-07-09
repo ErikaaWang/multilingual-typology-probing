@@ -1,33 +1,0 @@
-now processing task id: 8
-CORPUS: UD_Marathi
-python preprocess_treebank.py UD_Marathi --experiment-name inter-layer-17 --treebanks-root /home/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1 --bloom bloom-1b7 --checkpoint 10000 --inter-layer 17 --use-gpu
-Embeddings root: embeddings
-Using GPU
-0it [00:00, ?it/s]81it [00:00, 804.97it/s]172it [00:00, 865.87it/s]261it [00:00, 875.08it/s]349it [00:00, 873.14it/s]373it [00:00, 859.68it/s]
-0it [00:00, ?it/s]46it [00:00, 627.44it/s]
-0it [00:00, ?it/s]47it [00:00, 771.57it/s]
-Skipped:
-{'total_sents': 466}
-
-Total: 0
-Using model bloom-1b7-intermediate-global_step10000...
-Processing UD_Marathi...
-Traceback (most recent call last):
-  File "preprocess_treebank.py", line 374, in <module>
-    model = BloomModel.from_pretrained(bloom_model, 
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/transformers/modeling_utils.py", line 1878, in to
-    return super().to(*args, **kwargs)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1145, in to
-    return self._apply(convert)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 797, in _apply
-    module._apply(fn)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 797, in _apply
-    module._apply(fn)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 797, in _apply
-    module._apply(fn)
-  [Previous line repeated 1 more time]
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 820, in _apply
-    param_applied = fn(param)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1143, in convert
-    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
-torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 64.00 MiB (GPU 0; 5.94 GiB total capacity; 5.79 GiB already allocated; 35.31 MiB free; 5.79 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

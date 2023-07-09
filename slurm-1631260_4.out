@@ -1,31 +1,0 @@
-now processing task id: 4
-CORPUS: UD_Chinese-CFL
-python preprocess_treebank.py UD_Chinese-CFL --experiment-name inter-layer-17 --treebanks-root /home/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1 --bloom bloom-1b7 --checkpoint 1000 --inter-layer 17 --use-gpu
-Embeddings root: embeddings
-Using GPU
-0it [00:00, ?it/s]50it [00:00, 499.77it/s]121it [00:00, 623.00it/s]184it [00:00, 610.62it/s]246it [00:00, 577.26it/s]304it [00:00, 555.69it/s]360it [00:00, 504.42it/s]412it [00:00, 454.56it/s]451it [00:00, 508.23it/s]
-Skipped:
-{'total_sents': 451}
-
-Total: 0
-Using model bloom-1b7-intermediate-global_step1000...
-Processing UD_Chinese-CFL...
-Traceback (most recent call last):
-  File "preprocess_treebank.py", line 374, in <module>
-    model = BloomModel.from_pretrained(bloom_model, 
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/transformers/modeling_utils.py", line 1878, in to
-    return super().to(*args, **kwargs)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1145, in to
-    return self._apply(convert)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 797, in _apply
-    module._apply(fn)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 797, in _apply
-    module._apply(fn)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 797, in _apply
-    module._apply(fn)
-  [Previous line repeated 1 more time]
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 820, in _apply
-    param_applied = fn(param)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1143, in convert
-    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
-torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 64.00 MiB (GPU 0; 5.94 GiB total capacity; 5.79 GiB already allocated; 35.31 MiB free; 5.79 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
