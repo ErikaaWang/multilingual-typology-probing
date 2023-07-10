@@ -1,5 +1,8 @@
 #!/bin/sh
-
+#PBS -d /exports/eddie/scratch/s2308470/multilingual-typology-probing
+#PBS -D /exports/eddie/scratch/s2308470/multilingual-typology-probing
+#PBS -e /exports/eddie/scratch/s2308470/multilingual-typology-probing
+#PBS -o /exports/eddie/scratch/s2308470/multilingual-typology-probing
 USER=s2308470
 
 source /home/${USER}/.bashrc
