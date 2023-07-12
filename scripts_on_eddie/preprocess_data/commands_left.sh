@@ -1,11 +1,16 @@
 #!/bin/sh
-#PBS -d /exports/eddie/scratch/s2308470/multilingual-typology-probing
-#PBS -D /exports/eddie/scratch/s2308470/multilingual-typology-probing
-#PBS -e /exports/eddie/scratch/s2308470/multilingual-typology-probing
-#PBS -o /exports/eddie/scratch/s2308470/multilingual-typology-probing
-USER=s2308470
+# Grid Engine options (lines prefixed with #$)
+#$ -cwd  
+#$ -l h_vmem=32G
+#$ -q gpu
 
-source /home/${USER}/.bashrc
+USER=s2308470
+HOME_ROOT_DIRECTORY=/home/${USER}
+SCRATCH_ROOT_DIRECTORY=/exports/eddie/scratch/${USER}
+
+SCRATCH_DATA_DIR=${SCRATCH_ROOT_DIRECTORY}/multilingual-typology-probing/data/ud/ud-treebanks-v2.1
+
+source ${HOME_ROOT_DIRECTORY}/.bashrc
 source activate multilingual-typology-probing
 
 echo "python preprocess_treebank.py UD_English --bloom bloom-1b7 --use-gpu"
