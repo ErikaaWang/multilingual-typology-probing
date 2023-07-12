@@ -3,7 +3,7 @@
 #$ -cwd  
 #$ -l h_vmem=32G
 #$ -q gpu
-#$ -t 0-13
+#$ -t 1-14
 
 LAYER=17
 # CHECKPOINT=$1
@@ -15,13 +15,13 @@ SCRATCH_DATA_DIR=${SCRATCH_ROOT_DIRECTORY}/multilingual-typology-probing/data/ud
 
 # loop over languages in parallel
 CORPUS=($(cat scripts/languages_bloom.lst))
-echo "now processing task id: ${SGE_TASK_ID}"
-echo "CORPUS: ${CORPUS[${SGE_TASK_ID}]}"
+echo "now processing task id: ${SGE_TASK_ID-1}"
+echo "CORPUS: ${CORPUS[${SGE_TASK_ID-1}]}"
 
 source ${HOME_ROOT_DIRECTORY}/.bashrc
 source activate multilingual-typology-probing
 
 
-echo "python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --inter-layer $LAYER --use-gpu"
+echo "python preprocess_treebank.py ${CORPUS[${SGE_TASK_ID-1}]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --inter-layer $LAYER --use-gpu"
 # python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --inter-layer $LAYER --use-gpu
 # python preprocess_treebank.py ${CORPUS[${SLURM_ARRAY_TASK_ID}]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --checkpoint $CHECKPOINT --inter-layer $LAYER --use-gpu
