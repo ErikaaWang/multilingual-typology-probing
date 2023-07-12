@@ -5,7 +5,7 @@
 #$ -q gpu
 #$ -t 0-13
 
-# LAYER=17
+LAYER=17
 # CHECKPOINT=$1
 USER=s2308470
 HOME_ROOT_DIRECTORY=/home/${USER}
