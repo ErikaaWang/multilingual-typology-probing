@@ -1,7 +1,6 @@
 #!/bin/sh
 # Grid Engine options (lines prefixed with #$)
 #$ -cwd  
-#$ -l h_vmem=32G
 #$ -q gpu
 
 USER=s2308470
