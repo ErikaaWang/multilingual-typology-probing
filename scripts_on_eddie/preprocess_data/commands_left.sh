@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Grid Engine options (lines prefixed with #$)
 #$ -cwd  
 #$ -q gpu
