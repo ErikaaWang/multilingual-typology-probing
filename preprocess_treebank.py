@@ -41,6 +41,8 @@ parser.add_argument("--inter-layer", type=int, default=None, choices=range(1, 25
 parser.add_argument("--use-gpu", action="store_true", default=False)
 parser.add_argument("--skip-existing", action="store_true", default=False)
 parser.add_argument("--tiny-dataset", type=int, default=None)
+parser.add_argument("--reset-HF-cache-dir", action="store_true", default=False, help="If enabled, the hugging face\
+                    cache dir will be switched to the current work dir. ") 
 args = parser.parse_args()
 
 if args.inter_layer and not args.experiment_name:
@@ -158,7 +160,6 @@ for f in os.listdir(treebank_path):
                 tokenizer = BertTokenizer.from_pretrained("bert-base-multilingual-cased")
             elif args.bloom:
                 tokenizer = BloomTokenizerFast.from_pretrained("bigscience/bloom")
-                #tokenizer = BloomTokenizerFast.from_pretrained("bigscience/bloom-560m")
 
             for sent_id, tokenlist in enumerate(tqdm(
                     parse_incr(h, fields=_FEATS, field_parsers={"um_feats": unimorph_feature_parser}))):
@@ -360,23 +361,25 @@ elif args.xlmr:
 elif args.bloom:
     model_name = args.bloom
 
+    # the dictionary to store optional parameters
+    args_dic = {}
+
     if args.checkpoint:
         bloom_model = bloom_model + '-intermediate' 
         model_name = args.bloom  + '-intermediate-' + bloom_checkpoint
+        args_dic['revision'] = bloom_checkpoint
+    
     print(f"Using model {model_name}...")
     print(f"Processing {args.treebank}...")
 
     last_layer_flag = True
-    # index_switch_flag = False
+
+    args_dic['output_hidden_states'] = True
+    if args.reset_HF_cache_dir:
+        args_dic['cache_dir'] = os.getcwd()
 
     # Setup BLOOM
-    if args.checkpoint:
-        model = BloomModel.from_pretrained(bloom_model, 
-                                           revision=bloom_checkpoint,
-                                           output_hidden_states=True,
-                                           ).to(device)
-    else:
-        model = BloomModel.from_pretrained(bloom_model, output_hidden_states=True).to(device)
+    model = BloomModel.from_pretrained(bloom_model, args_dic).to(device)
 
     if (not model.config.output_hidden_states) and args.inter_layer:
         raise Exception("The model configuration is not able to output intermediate hidden layers.")
