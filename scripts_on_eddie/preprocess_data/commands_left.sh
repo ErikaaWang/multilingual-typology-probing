@@ -2,7 +2,7 @@
 # Grid Engine options (lines prefixed with #$)
 #$ -cwd  
 #$ -q gpu
-#$ -l h_vmem=4G
+#$ -l h_vmem=32G
 #$ -pe gpu-a100 1
 
 USER=s2308470
