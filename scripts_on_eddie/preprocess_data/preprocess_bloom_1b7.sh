@@ -16,7 +16,7 @@ SCRATCH_DATA_DIR=${SCRATCH_ROOT_DIRECTORY}/multilingual-typology-probing/data/ud
 
 # loop over languages in parallel
 CORPUS=($(cat scripts/languages_bloom.lst))
-echo "now processing task id: ${SGE_TASK_ID-1}"
+echo "now processing task id: ${SGE_TASK_ID}"
 echo "CORPUS: ${CORPUS[${SGE_TASK_ID-1}]}"
 
 source ${HOME_ROOT_DIRECTORY}/.bashrc
