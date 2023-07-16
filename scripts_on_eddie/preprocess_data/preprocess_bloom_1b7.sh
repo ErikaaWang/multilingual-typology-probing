@@ -7,7 +7,7 @@
 #$ -t 1-14
 
 LAYER=17
-# CHECKPOINT=$1
+CHECKPOINT=$1
 USER=s2308470
 HOME_ROOT_DIRECTORY=/home/${USER}
 SCRATCH_ROOT_DIRECTORY=/exports/eddie/scratch/${USER}
@@ -23,6 +23,6 @@ source ${HOME_ROOT_DIRECTORY}/.bashrc
 source activate multilingual-typology-probing
 
 
-echo "python preprocess_treebank.py ${CORPUS[${SGE_TASK_ID}-1]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --inter-layer $LAYER --use-gpu"
-python preprocess_treebank.py ${CORPUS[${SGE_TASK_ID}-1]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --inter-layer $LAYER --use-gpu
-# python preprocess_treebank.py ${CORPUS[${SGE_TASK_ID}-1]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --checkpoint $CHECKPOINT --inter-layer $LAYER --use-gpu
+echo "python preprocess_treebank.py ${CORPUS[${SGE_TASK_ID}-1]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --checkpoint $CHECKPOINT --inter-layer $LAYER --use-gpu"
+python preprocess_treebank.py ${CORPUS[${SGE_TASK_ID}-1]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --checkpoint $CHECKPOINT --inter-layer $LAYER --use-gpu
+# python preprocess_treebank.py ${CORPUS[${SGE_TASK_ID}-1]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --inter-layer $LAYER --use-gpu
