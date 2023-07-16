@@ -379,7 +379,7 @@ elif args.bloom:
         args_dic['cache_dir'] = os.getcwd()
 
     # Setup BLOOM
-    model = BloomModel.from_pretrained(bloom_model, args_dic).to(device)
+    model = BloomModel.from_pretrained(bloom_model, **args_dic).to(device)
 
     if (not model.config.output_hidden_states) and args.inter_layer:
         raise Exception("The model configuration is not able to output intermediate hidden layers.")
