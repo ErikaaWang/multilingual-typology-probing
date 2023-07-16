@@ -2,6 +2,8 @@ wandb/
 data/
 data.zip
 
+models--bigscience--bloom-1b7-intermediate/
+
 **/current_model.pkl
 
 debug*.ipynb

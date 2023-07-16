@@ -1,0 +1,18 @@
+now processing task id: 1
+CORPUS: UD_Arabic
+python preprocess_treebank.py UD_Arabic --experiment-name inter-layer-17 --treebanks-root /exports/eddie/scratch/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1 --bloom bloom-1b7 --checkpoint 50000 --inter-layer 17 --use-gpu --reset-HF-cache-dir
+Embeddings root: embeddings
+Using GPU
+Skipped:
+{'total_sents': 7664}
+
+Total: 0
+Using model bloom-1b7-intermediate-global_step50000...
+Processing UD_Arabic...
+The output embedding from the layer at index 16 was saved.
+Building final...
+Final sizes: 198743/26518/16795
+Save data sets
+Files saved:  /exports/eddie/scratch/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1/UD_Arabic/inter-layer-17/UD_Arabic-train-bloom-1b7-intermediate-global_step50000.pkl
+Files saved:  /exports/eddie/scratch/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1/UD_Arabic/inter-layer-17/UD_Arabic-test-bloom-1b7-intermediate-global_step50000.pkl
+Files saved:  /exports/eddie/scratch/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1/UD_Arabic/inter-layer-17/UD_Arabic-dev-bloom-1b7-intermediate-global_step50000.pkl

@@ -1,0 +1,18 @@
+now processing task id: 4
+CORPUS: UD_Chinese
+python preprocess_treebank.py UD_Chinese --experiment-name inter-layer-17 --treebanks-root /exports/eddie/scratch/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1 --bloom bloom-1b7 --checkpoint 50000 --inter-layer 17 --use-gpu --reset-HF-cache-dir
+Embeddings root: embeddings
+Using GPU
+Skipped:
+{'total_sents': 4997}
+
+Total: 0
+Using model bloom-1b7-intermediate-global_step50000...
+Processing UD_Chinese...
+The output embedding from the layer at index 16 was saved.
+Building final...
+Final sizes: 100212/13460/9611
+Save data sets
+Files saved:  /exports/eddie/scratch/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1/UD_Chinese/inter-layer-17/UD_Chinese-train-bloom-1b7-intermediate-global_step50000.pkl
+Files saved:  /exports/eddie/scratch/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1/UD_Chinese/inter-layer-17/UD_Chinese-test-bloom-1b7-intermediate-global_step50000.pkl
+Files saved:  /exports/eddie/scratch/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1/UD_Chinese/inter-layer-17/UD_Chinese-dev-bloom-1b7-intermediate-global_step50000.pkl
