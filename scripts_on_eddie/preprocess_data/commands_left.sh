@@ -2,6 +2,8 @@
 # Grid Engine options (lines prefixed with #$)
 #$ -cwd  
 #$ -q gpu
+#$ -l h_vmem=4G
+#$ -pe gpu-a100 1
 
 USER=s2308470
 HOME_ROOT_DIRECTORY=/home/${USER}

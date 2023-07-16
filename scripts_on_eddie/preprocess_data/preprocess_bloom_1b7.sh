@@ -3,6 +3,7 @@
 #$ -cwd  
 #$ -l h_vmem=32G
 #$ -q gpu
+#$ -pe gpu-a100 1
 #$ -t 1-14
 
 LAYER=17
