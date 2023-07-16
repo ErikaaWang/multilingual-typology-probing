@@ -23,6 +23,6 @@ source ${HOME_ROOT_DIRECTORY}/.bashrc
 source activate multilingual-typology-probing
 
 
-echo "python preprocess_treebank.py ${CORPUS[${SGE_TASK_ID}-1]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --checkpoint $CHECKPOINT --inter-layer $LAYER --use-gpu --reset-HF-cache-dir"
-python preprocess_treebank.py ${CORPUS[${SGE_TASK_ID}-1]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --checkpoint $CHECKPOINT --inter-layer $LAYER --use-gpu --reset-HF-cache-dir
-# python preprocess_treebank.py ${CORPUS[${SGE_TASK_ID}-1]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --inter-layer $LAYER --use-gpu
+echo "python preprocess_treebank.py ${CORPUS[${SGE_TASK_ID}-1]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --inter-layer $LAYER --use-gpu --reset-HF-cache-dir"
+# python preprocess_treebank.py ${CORPUS[${SGE_TASK_ID}-1]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --checkpoint $CHECKPOINT --inter-layer $LAYER --use-gpu --reset-HF-cache-dir
+python preprocess_treebank.py ${CORPUS[${SGE_TASK_ID}-1]} --experiment-name inter-layer-$LAYER --treebanks-root $SCRATCH_DATA_DIR --bloom bloom-1b7 --inter-layer $LAYER --use-gpu --reset-HF-cache-dir
