@@ -198,6 +198,8 @@ def setup_probe(args, dataset_train: WordClassificationDataset, report_progress:
         embedding_size = 1024
     if 'bloom-1b1' in args.embedding:
         embedding_size = 1536
+    if 'bloom-1b7' in args.embedding:
+        embedding_size = 2048
     neural_probe_model = MLPProbeModel(
         embedding_size=embedding_size, num_classes=len(dataset_train.keys()),
         hidden_size=args.probe_num_hidden_units, num_layers=args.probe_num_layers,
