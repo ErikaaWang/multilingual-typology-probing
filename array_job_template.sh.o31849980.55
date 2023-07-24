@@ -1,0 +1,6 @@
+python run.py --language UD_Marathi --experiment-name inter-layer-17 --attribute Number --trainer poisson --gpu --embedding bloom-1b7 greedy --selection-size 50 --selection-criterion mi
+Setting up datasets (['UD_Marathi'], Number) and probes...
+dataset loaded from path: 
+data/ud/ud-treebanks-v2.1/UD_Marathi/inter-layer-17/UD_Marathi-train-bloom-1b7.pkl
+data/ud/ud-treebanks-v2.1/UD_Marathi/inter-layer-17/UD_Marathi-dev-bloom-1b7.pkl
+data/ud/ud-treebanks-v2.1/UD_Marathi/inter-layer-17/UD_Marathi-test-bloom-1b7.pkl

@@ -3,6 +3,7 @@ data/
 data.zip
 
 models--bigscience--bloom-1b7-intermediate/
+models--bigscience--bloom-1b7/
 
 **/current_model.pkl
 

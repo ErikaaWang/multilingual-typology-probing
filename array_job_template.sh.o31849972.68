@@ -1,0 +1,314 @@
+python run.py --language UD_Portuguese --experiment-name inter-layer-13 --attribute Number --trainer poisson --gpu --embedding bloom-1b7-intermediate-global_step100000 greedy --selection-size 50 --selection-criterion mi
+Setting up datasets (['UD_Portuguese'], Number) and probes...
+dataset loaded from path: 
+data/ud/ud-treebanks-v2.1/UD_Portuguese/inter-layer-13/UD_Portuguese-train-bloom-1b7-intermediate-global_step100000.pkl
+data/ud/ud-treebanks-v2.1/UD_Portuguese/inter-layer-13/UD_Portuguese-dev-bloom-1b7-intermediate-global_step100000.pkl
+data/ud/ud-treebanks-v2.1/UD_Portuguese/inter-layer-13/UD_Portuguese-test-bloom-1b7-intermediate-global_step100000.pkl
+Embedding dimensionality: 2048
+Pre-training probe (if possible)...
+Total dataset size: 112472
+Actual train dataset size: 101224
+Early stopping dataset size: 11248
+Early stopping!
+Probing through greedy dimension selection...
+Iteration #0
+	Dimensions selected so far: []
+	Picking next dimension...
+	Selected dimension: 203
+	Iteration results: {'mi': -0.47130306243037345, 'accuracy': 0.7307653319817536}
+
+Iteration #1
+	Dimensions selected so far: [203]
+	Picking next dimension...
+	Selected dimension: 809
+	Iteration results: {'mi': -0.26105893552248766, 'accuracy': 0.7316776482513938}
+
+Iteration #2
+	Dimensions selected so far: [203, 809]
+	Picking next dimension...
+	Selected dimension: 1028
+	Iteration results: {'mi': -0.11095726927245932, 'accuracy': 0.7308667004561581}
+
+Iteration #3
+	Dimensions selected so far: [203, 809, 1028]
+	Picking next dimension...
+	Selected dimension: 1736
+	Iteration results: {'mi': -0.02151726709495663, 'accuracy': 0.7332995438418651}
+
+Iteration #4
+	Dimensions selected so far: [203, 809, 1028, 1736]
+	Picking next dimension...
+	Selected dimension: 95
+	Iteration results: {'mi': 0.06635489221310498, 'accuracy': 0.7435377597567157}
+
+Iteration #5
+	Dimensions selected so far: [203, 809, 1028, 1736, 95]
+	Picking next dimension...
+	Selected dimension: 1003
+	Iteration results: {'mi': 0.12427912432875256, 'accuracy': 0.7557019766852509}
+
+Iteration #6
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003]
+	Picking next dimension...
+	Selected dimension: 960
+	Iteration results: {'mi': 0.15665801634620982, 'accuracy': 0.7662442980233147}
+
+Iteration #7
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960]
+	Picking next dimension...
+	Selected dimension: 776
+	Iteration results: {'mi': 0.2118600631168802, 'accuracy': 0.7832742017232641}
+
+Iteration #8
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776]
+	Picking next dimension...
+	Selected dimension: 149
+	Iteration results: {'mi': 0.26079227330360205, 'accuracy': 0.7994931576279777}
+
+Iteration #9
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149]
+	Picking next dimension...
+	Selected dimension: 1276
+	Iteration results: {'mi': 0.2522046447319426, 'accuracy': 0.7957425240750127}
+
+Iteration #10
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276]
+	Picking next dimension...
+	Selected dimension: 1775
+	Iteration results: {'mi': 0.27480728640699054, 'accuracy': 0.8004054738976178}
+
+Iteration #11
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775]
+	Picking next dimension...
+	Selected dimension: 303
+	Iteration results: {'mi': 0.29942033200162527, 'accuracy': 0.8066903193106943}
+
+Iteration #12
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303]
+	Picking next dimension...
+	Selected dimension: 93
+	Iteration results: {'mi': 0.31887715763860874, 'accuracy': 0.8183476938672073}
+
+Iteration #13
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93]
+	Picking next dimension...
+	Selected dimension: 637
+	Iteration results: {'mi': 0.3353284565322676, 'accuracy': 0.8235174860618347}
+
+Iteration #14
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637]
+	Picking next dimension...
+	Selected dimension: 274
+	Iteration results: {'mi': 0.3531495458300363, 'accuracy': 0.8288900152052712}
+
+Iteration #15
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274]
+	Picking next dimension...
+	Selected dimension: 467
+	Iteration results: {'mi': 0.34940230723191823, 'accuracy': 0.8277749619868221}
+
+Iteration #16
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467]
+	Picking next dimension...
+	Selected dimension: 1845
+	Iteration results: {'mi': 0.3542163481949598, 'accuracy': 0.8262544348707552}
+
+Iteration #17
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845]
+	Picking next dimension...
+	Selected dimension: 1202
+	Iteration results: {'mi': 0.37208875410929443, 'accuracy': 0.8388241256969082}
+
+Iteration #18
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202]
+	Picking next dimension...
+	Selected dimension: 1583
+	Iteration results: {'mi': 0.38700894525883067, 'accuracy': 0.8457171819564115}
+
+Iteration #19
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583]
+	Picking next dimension...
+	Selected dimension: 1808
+	Iteration results: {'mi': 0.389557278297635, 'accuracy': 0.8466294982260517}
+
+Iteration #20
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808]
+	Picking next dimension...
+	Selected dimension: 1498
+	Iteration results: {'mi': 0.38325121821963987, 'accuracy': 0.8494678155093766}
+
+Iteration #21
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498]
+	Picking next dimension...
+	Selected dimension: 845
+	Iteration results: {'mi': 0.38847400140575805, 'accuracy': 0.8494678155093766}
+
+Iteration #22
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845]
+	Picking next dimension...
+	Selected dimension: 549
+	Iteration results: {'mi': 0.4038552234943536, 'accuracy': 0.8498732894069945}
+
+Iteration #23
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549]
+	Picking next dimension...
+	Selected dimension: 1695
+	Iteration results: {'mi': 0.4215976750656397, 'accuracy': 0.8557526609224532}
+
+Iteration #24
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695]
+	Picking next dimension...
+	Selected dimension: 173
+	Iteration results: {'mi': 0.4479988719553718, 'accuracy': 0.8625443487075519}
+
+Iteration #25
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173]
+	Picking next dimension...
+	Selected dimension: 100
+	Iteration results: {'mi': 0.45246556644795793, 'accuracy': 0.8667004561581348}
+
+Iteration #26
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100]
+	Picking next dimension...
+	Selected dimension: 1339
+	Iteration results: {'mi': 0.45558968932009625, 'accuracy': 0.8671059300557526}
+
+Iteration #27
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339]
+	Picking next dimension...
+	Selected dimension: 1230
+	Iteration results: {'mi': 0.46215437900600886, 'accuracy': 0.8699442473390775}
+
+Iteration #28
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230]
+	Picking next dimension...
+	Selected dimension: 76
+	Iteration results: {'mi': 0.46571830011942494, 'accuracy': 0.8718702483527623}
+
+Iteration #29
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76]
+	Picking next dimension...
+	Selected dimension: 1824
+	Iteration results: {'mi': 0.47988434677426206, 'accuracy': 0.8769386720729853}
+
+Iteration #30
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824]
+	Picking next dimension...
+	Selected dimension: 769
+	Iteration results: {'mi': 0.48947666567444303, 'accuracy': 0.8803852002027369}
+
+Iteration #31
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769]
+	Picking next dimension...
+	Selected dimension: 1902
+	Iteration results: {'mi': 0.49889267643834645, 'accuracy': 0.8823112012164217}
+
+Iteration #32
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902]
+	Picking next dimension...
+	Selected dimension: 445
+	Iteration results: {'mi': 0.49021991242305196, 'accuracy': 0.8816016218955904}
+
+Iteration #33
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445]
+	Picking next dimension...
+	Selected dimension: 1033
+	Iteration results: {'mi': 0.49889942997113473, 'accuracy': 0.8845413076533198}
+
+Iteration #34
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033]
+	Picking next dimension...
+	Selected dimension: 1
+	Iteration results: {'mi': 0.48575823191692985, 'accuracy': 0.8844399391789154}
+
+Iteration #35
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1]
+	Picking next dimension...
+	Selected dimension: 1797
+	Iteration results: {'mi': 0.48475277414150064, 'accuracy': 0.8842372022301065}
+
+Iteration #36
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1, 1797]
+	Picking next dimension...
+	Selected dimension: 1929
+	Iteration results: {'mi': 0.48870338617017695, 'accuracy': 0.8844399391789154}
+
+Iteration #37
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1, 1797, 1929]
+	Picking next dimension...
+	Selected dimension: 1190
+	Iteration results: {'mi': 0.4881609546957672, 'accuracy': 0.886771414090218}
+
+Iteration #38
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1, 1797, 1929, 1190]
+	Picking next dimension...
+	Selected dimension: 513
+	Iteration results: {'mi': 0.4928951300172737, 'accuracy': 0.887683730359858}
+
+Iteration #39
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1, 1797, 1929, 1190, 513]
+	Picking next dimension...
+	Selected dimension: 1238
+	Iteration results: {'mi': 0.484169616817852, 'accuracy': 0.8879878357830715}
+
+Iteration #40
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1, 1797, 1929, 1190, 513, 1238]
+	Picking next dimension...
+	Selected dimension: 1827
+	Iteration results: {'mi': 0.4780019529988909, 'accuracy': 0.8862645717181956}
+
+Iteration #41
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1, 1797, 1929, 1190, 513, 1238, 1827]
+	Picking next dimension...
+	Selected dimension: 86
+	Iteration results: {'mi': 0.48783079903604576, 'accuracy': 0.8896097313735428}
+
+Iteration #42
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1, 1797, 1929, 1190, 513, 1238, 1827, 86]
+	Picking next dimension...
+	Selected dimension: 1565
+	Iteration results: {'mi': 0.48494182189644724, 'accuracy': 0.8887987835783071}
+
+Iteration #43
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1, 1797, 1929, 1190, 513, 1238, 1827, 86, 1565]
+	Picking next dimension...
+	Selected dimension: 1411
+	Iteration results: {'mi': 0.49102061536348895, 'accuracy': 0.8903193106943741}
+
+Iteration #44
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1, 1797, 1929, 1190, 513, 1238, 1827, 86, 1565, 1411]
+	Picking next dimension...
+	Selected dimension: 1881
+	Iteration results: {'mi': 0.48698763070004564, 'accuracy': 0.8938672072985302}
+
+Iteration #45
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1, 1797, 1929, 1190, 513, 1238, 1827, 86, 1565, 1411, 1881]
+	Picking next dimension...
+	Selected dimension: 602
+	Iteration results: {'mi': 0.48723659047692525, 'accuracy': 0.8956918398378104}
+
+Iteration #46
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1, 1797, 1929, 1190, 513, 1238, 1827, 86, 1565, 1411, 1881, 602]
+	Picking next dimension...
+	Selected dimension: 1069
+	Iteration results: {'mi': 0.5020982510089624, 'accuracy': 0.8968068930562595}
+
+Iteration #47
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1, 1797, 1929, 1190, 513, 1238, 1827, 86, 1565, 1411, 1881, 602, 1069]
+	Picking next dimension...
+	Selected dimension: 1623
+	Iteration results: {'mi': 0.511365684051522, 'accuracy': 0.8975164723770908}
+
+Iteration #48
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1, 1797, 1929, 1190, 513, 1238, 1827, 86, 1565, 1411, 1881, 602, 1069, 1623]
+	Picking next dimension...
+	Selected dimension: 436
+	Iteration results: {'mi': 0.5171011217720287, 'accuracy': 0.8987328940699443}
+
+Iteration #49
+	Dimensions selected so far: [203, 809, 1028, 1736, 95, 1003, 960, 776, 149, 1276, 1775, 303, 93, 637, 274, 467, 1845, 1202, 1583, 1808, 1498, 845, 549, 1695, 173, 100, 1339, 1230, 76, 1824, 769, 1902, 445, 1033, 1, 1797, 1929, 1190, 513, 1238, 1827, 86, 1565, 1411, 1881, 602, 1069, 1623, 436]
+	Picking next dimension...
+	Selected dimension: 1592
+	Iteration results: {'mi': 0.5150568990253731, 'accuracy': 0.8986315255955398}
+
+Saved experiment outputs to './results/bloom-1b7-intermediate-global_step100000/inter-layer-13/UD_Portuguese/Number/loginfo.json'.
