@@ -1,6 +1,7 @@
 wandb/
 data/
 data.zip
+xtreme/
 
 models--bigscience--bloom-1b7-intermediate/
 models--bigscience--bloom-1b7/
