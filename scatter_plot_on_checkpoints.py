@@ -9,13 +9,16 @@ from collections import Counter
 import pycountry
 
 import numpy as np
+import pandas as pd
 from tqdm import tqdm
 import pickle
 import os
 import random
 from pathlib import Path
 
+
 import matplotlib.pyplot as plt
+plt.ioff()
 from collections import defaultdict
 from argparse import ArgumentParser
 
