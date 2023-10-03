@@ -1,0 +1,36 @@
+python run.py --language UD_Marathi --experiment-name inter-layer-17 --attribute Gender --trainer poisson --gpu --embedding bloom-560m-intermediate-global_step200000 greedy --selection-size 50 --selection-criterion mi
+Setting up datasets (['UD_Marathi'], Gender) and probes...
+  0%|          | 0/2680 [00:00<?, ?it/s]100%|██████████| 2680/2680 [00:00<00:00, 26989.40it/s]
+  0%|          | 0/480 [00:00<?, ?it/s]100%|██████████| 480/480 [00:00<00:00, 39042.51it/s]
+  0%|          | 0/346 [00:00<?, ?it/s]100%|██████████| 346/346 [00:00<00:00, 34950.85it/s]
+dataset loaded from path: 
+data/ud/ud-treebanks-v2.1/UD_Marathi/inter-layer-17/UD_Marathi-train-bloom-560m-intermediate-global_step200000.pkl
+data/ud/ud-treebanks-v2.1/UD_Marathi/inter-layer-17/UD_Marathi-dev-bloom-560m-intermediate-global_step200000.pkl
+data/ud/ud-treebanks-v2.1/UD_Marathi/inter-layer-17/UD_Marathi-test-bloom-560m-intermediate-global_step200000.pkl
+Embedding dimensionality: 1024
+Pre-training probe (if possible)...
+Total dataset size: 1173
+Actual train dataset size: 1055
+Early stopping dataset size: 118
+Training flexible neural probe:   0%|          | 0/5000 [00:00<?, ?it/s]                                                                        Traceback (most recent call last):
+  File "run.py", line 100, in <module>
+    args.func(args)
+  File "/home/s2308470/multilingual-typology-probing/commands.py", line 161, in greedy
+    trainer.train()
+  File "/home/s2308470/multilingual-typology-probing/probekit/trainers/trainer.py", line 21, in train
+    self._train()
+  File "/home/s2308470/multilingual-typology-probing/probekit/trainers/neural_probe_trainer.py", line 30, in _train
+    self._train_for_dimensions()
+  File "/home/s2308470/multilingual-typology-probing/trainers/flexible_neural_probe_trainer.py", line 100, in _train_for_dimensions
+    loss_bp, loss_true = self.train_loss(
+  File "/home/s2308470/multilingual-typology-probing/trainers/poisson_trainer.py", line 76, in train_loss
+    class_scores = model(minibatch, mask)
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/s2308470/multilingual-typology-probing/models/neural_probe.py", line 113, in forward
+    input = self._first_layer(input)
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/linear.py", line 114, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 must have the same dtype

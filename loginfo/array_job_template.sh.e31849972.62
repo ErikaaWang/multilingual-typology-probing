@@ -1,0 +1,5 @@
+  0%|          | 0/2394 [00:00<?, ?it/s]100%|██████████| 2394/2394 [00:00<00:00, 87636.05it/s]
+  0%|          | 0/341 [00:00<?, ?it/s]100%|██████████| 341/341 [00:00<00:00, 100214.24it/s]
+  0%|          | 0/771 [00:00<?, ?it/s]100%|██████████| 771/771 [00:00<00:00, 101749.68it/s]
+/exports/eddie/scratch/s2308470/multilingual-typology-probing/utils/setup.py:149: UserWarning: Not enough classes to run experiment. This attribute has 1 classes with at least 20 examples across all splits (need at least 2). Skipping...
+  warnings.warn(f"Not enough classes to run experiment. This attribute has {len(property_value_list)}"
