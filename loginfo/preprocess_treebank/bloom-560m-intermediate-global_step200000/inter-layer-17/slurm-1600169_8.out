@@ -1,30 +1,0 @@
-now processing task id: 8
-CORPUS: UD_Marathi
-python preprocess_treebank.py UD_Marathi --experiment-name inter-layer-17 --treebanks-root /home/s2308470/multilingual-typology-probing/data/ud/ud-treebanks-v2.1 --bloom bloom-560m --checkpoint 200000 --inter-layer 17 --use-gpu
-Embeddings root: embeddings
-Using GPU
-0it [00:00, ?it/s]66it [00:00, 650.84it/s]164it [00:00, 838.83it/s]252it [00:00, 854.98it/s]338it [00:00, 845.59it/s]373it [00:00, 831.25it/s]
-0it [00:00, ?it/s]46it [00:00, 625.77it/s]
-0it [00:00, ?it/s]47it [00:00, 779.53it/s]
-Skipped:
-{'total_sents': 466}
-
-Total: 0
-Using model bloom-560m-intermediate-global_step200000...
-Processing UD_Marathi...
-Traceback (most recent call last):
-  File "preprocess_treebank.py", line 374, in <module>
-    model = BloomModel.from_pretrained(bloom_model, 
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/transformers/modeling_utils.py", line 1878, in to
-    return super().to(*args, **kwargs)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1145, in to
-    return self._apply(convert)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 797, in _apply
-    module._apply(fn)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 820, in _apply
-    param_applied = fn(param)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1143, in convert
-    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
-  File "/home/s2308470/miniconda3/envs/multilingual-typology-probing/lib/python3.8/site-packages/torch/cuda/__init__.py", line 247, in _lazy_init
-    torch._C._cuda_init()
-RuntimeError: No CUDA GPUs are available

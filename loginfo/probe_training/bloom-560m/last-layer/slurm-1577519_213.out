@@ -1,6 +1,0 @@
-Setting up datasets (['UD_Marathi'], SwitchRef) and probes...
-  0%|          | 0/2680 [00:00<?, ?it/s]  0%|          | 1/2680 [00:00<04:42,  9.47it/s]100%|██████████| 2680/2680 [00:00<00:00, 14008.28it/s]
-  0%|          | 0/480 [00:00<?, ?it/s]100%|██████████| 480/480 [00:00<00:00, 40999.20it/s]
-  0%|          | 0/346 [00:00<?, ?it/s]100%|██████████| 346/346 [00:00<00:00, 32316.32it/s]
-/home/s2308470/multilingual-typology-probing/utils/setup.py:139: UserWarning: Not enough classes to run experiment. This attribute has 0 classes with at least 20 examples across all splits (need at least 2). Skipping...
-  warnings.warn(f"Not enough classes to run experiment. This attribute has {len(property_value_list)}"

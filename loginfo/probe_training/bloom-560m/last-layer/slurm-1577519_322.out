@@ -1,6 +1,0 @@
-Setting up datasets (['UD_Vietnamese'], Evidentiality) and probes...
-  0%|          | 0/33419 [00:00<?, ?it/s]  0%|          | 1/33419 [00:00<1:35:50,  5.81it/s] 10%|█         | 3386/33419 [00:00<00:01, 15355.94it/s] 18%|█▊        | 6064/33419 [00:00<00:01, 14233.39it/s] 28%|██▊       | 9488/33419 [00:00<00:01, 19977.14it/s] 39%|███▊      | 12921/33419 [00:00<00:00, 24150.04it/s] 49%|████▉     | 16420/33419 [00:00<00:00, 27329.94it/s] 59%|█████▉    | 19840/33419 [00:00<00:00, 29358.93it/s] 70%|██████▉   | 23252/33419 [00:00<00:00, 30769.39it/s] 80%|███████▉  | 26728/33419 [00:01<00:00, 31954.86it/s] 90%|████████▉ | 30034/33419 [00:01<00:00, 22670.35it/s]100%|██████████| 33419/33419 [00:01<00:00, 23661.46it/s]
-  0%|          | 0/3929 [00:00<?, ?it/s]100%|██████████| 3929/3929 [00:00<00:00, 42398.97it/s]
-  0%|          | 0/6406 [00:00<?, ?it/s] 66%|██████▋   | 4247/6406 [00:00<00:00, 42462.65it/s]100%|██████████| 6406/6406 [00:00<00:00, 42056.35it/s]
-/home/s2308470/multilingual-typology-probing/utils/setup.py:139: UserWarning: Not enough classes to run experiment. This attribute has 0 classes with at least 20 examples across all splits (need at least 2). Skipping...
-  warnings.warn(f"Not enough classes to run experiment. This attribute has {len(property_value_list)}"
