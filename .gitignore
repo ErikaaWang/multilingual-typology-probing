@@ -2,6 +2,7 @@ wandb/
 data/
 data.zip
 xtreme/
+loginfo/
 
 models--bigscience--bloom-1b7-intermediate/
 models--bigscience--bloom-1b7/
