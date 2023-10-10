@@ -1,6 +1,0 @@
-Setting up datasets (['UD_Tamil'], Definiteness) and probes...
-  0%|          | 0/6848 [00:00<?, ?it/s]  0%|          | 1/6848 [00:00<13:41,  8.33it/s] 42%|████▏     | 2906/6848 [00:00<00:00, 15786.69it/s] 87%|████████▋ | 5966/6848 [00:00<00:00, 22257.91it/s]100%|██████████| 6848/6848 [00:00<00:00, 19666.56it/s]
-  0%|          | 0/673 [00:00<?, ?it/s]100%|██████████| 673/673 [00:00<00:00, 38461.50it/s]
-  0%|          | 0/1114 [00:00<?, ?it/s]100%|██████████| 1114/1114 [00:00<00:00, 35931.73it/s]
-/home/s2308470/multilingual-typology-probing/utils/setup.py:139: UserWarning: Not enough classes to run experiment. This attribute has 0 classes with at least 20 examples across all splits (need at least 2). Skipping...
-  warnings.warn(f"Not enough classes to run experiment. This attribute has {len(property_value_list)}"
